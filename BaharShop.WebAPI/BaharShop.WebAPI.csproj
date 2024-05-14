@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BaharShop.Application\BaharShop.Application.csproj" />
+    <ProjectReference Include="..\BaharShop.Common\BaharShop.Common.csproj" />
+    <ProjectReference Include="..\BaharShop.Domain\BaharShop.Domain.csproj" />
+    <ProjectReference Include="..\BaharShop.InfraStructure\BaharShop.InfraStructure.csproj" />
+  </ItemGroup>
+
+</Project>

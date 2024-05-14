@@ -1,3 +1,6 @@
+using BaharShop.InfraStructure.DBContext;
+using Microsoft.EntityFrameworkCore;
+
 namespace BaharShop.WebAPI
 {
     public class Program
@@ -5,6 +8,9 @@ namespace BaharShop.WebAPI
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<BaharShopDBContext>(options =>
+                        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add services to the container.
             builder.Services.AddAuthorization();

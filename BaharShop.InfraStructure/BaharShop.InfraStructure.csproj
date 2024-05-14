@@ -11,4 +11,10 @@
     <ProjectReference Include="..\BaharShop.Domain\BaharShop.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DBContext\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Readers\" />
+  </ItemGroup>
+
 </Project>

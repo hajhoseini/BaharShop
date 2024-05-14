@@ -10,4 +10,10 @@
     <ProjectReference Include="..\BaharShop.Common\BaharShop.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="IReaders\" />
+    <Folder Include="IRepositories\" />
+  </ItemGroup>
+
 </Project>

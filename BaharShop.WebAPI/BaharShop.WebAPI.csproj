@@ -13,4 +13,9 @@
     <ProjectReference Include="..\BaharShop.InfraStructure\BaharShop.InfraStructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Middlewares\" />
+  </ItemGroup>
+
 </Project>

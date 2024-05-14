@@ -12,6 +12,8 @@ namespace BaharShop.WebAPI
             builder.Services.AddDbContext<BaharShopDBContext>(options =>
                         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            builder.Services.AddControllers();
+
             // Add services to the container.
             builder.Services.AddAuthorization();
 
@@ -21,26 +23,30 @@ namespace BaharShop.WebAPI
             // Configure the HTTP request pipeline.
 
             app.UseHttpsRedirection();
-
+            app.UseRouting();
             app.UseAuthorization();
 
-        //    var summaries = new[]
-        //    {
-        //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        //};
+            //    var summaries = new[]
+            //    {
+            //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            //};
 
-        //    app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-        //    {
-        //        var forecast = Enumerable.Range(1, 5).Select(index =>
-        //       new WeatherForecast
-        //            {
-        //                Date = DateTime.Now.AddDays(index),
-        //                TemperatureC = Random.Shared.Next(-20, 55),
-        //                Summary = summaries[Random.Shared.Next(summaries.Length)]
-        //            })
-        //            .ToArray();
-        //        return forecast;
-        //    });
+            //    app.MapGet("/weatherforecast", (HttpContext httpContext) =>
+            //    {
+            //        var forecast = Enumerable.Range(1, 5).Select(index =>
+            //       new WeatherForecast
+            //            {
+            //                Date = DateTime.Now.AddDays(index),
+            //                TemperatureC = Random.Shared.Next(-20, 55),
+            //                Summary = summaries[Random.Shared.Next(summaries.Length)]
+            //            })
+            //            .ToArray();
+            //        return forecast;
+            //    });
+
+            app.MapControllerRoute(
+                        name: "default",
+                        pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

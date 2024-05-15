@@ -1,0 +1,13 @@
+﻿using BaharShop.Domain.Entities.Products;
+using BaharShop.Domain.IReaders.Products;
+using BaharShop.InfraStructure.DBContext;
+
+namespace BaharShop.InfraStructure.Readers.Products
+{
+    public class ProductReader : GenericReader<Product>, IProductReader
+    {
+        public ProductReader(BaharShopDBContext dbContext) : base(dbContext)
+        {
+        }
+    }
+}

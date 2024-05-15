@@ -12,8 +12,6 @@
 
   <ItemGroup>
     <Folder Include="Entities\Sellers\" />
-    <Folder Include="IReaders\" />
-    <Folder Include="IRepositories\" />
   </ItemGroup>
 
 </Project>

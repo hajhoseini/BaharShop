@@ -1,3 +1,5 @@
+using BaharShop.Application;
+using BaharShop.InfraStructure;
 using BaharShop.InfraStructure.DBContext;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +15,8 @@ namespace BaharShop.WebAPI
                         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddControllers();
+            builder.Services.InfraStructureServiceCollections();
+            builder.Services.ApplicationServiceCollections();
 
             // Add services to the container.
             builder.Services.AddAuthorization();

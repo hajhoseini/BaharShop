@@ -48,7 +48,7 @@ namespace BaharShop.InfraStructure.Repositories
             try
             {
                 _dbContext.Entry(entity).State = EntityState.Modified;
-                _dbContext.SaveChangesAsync(CancellationToken.None);
+                await _dbContext.SaveChangesAsync(CancellationToken.None);
 
                 result.IsSuccess = true;
             }

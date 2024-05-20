@@ -13,6 +13,7 @@ namespace BaharShop.Application.Features.Customers.Queries.RequestHandlers
 
 		public GetListCustomersQueryHandler(IMapper mapper, ICustomerReader CustomerReader)
 		{
+			_mapper = mapper;
 			_CustomerReader = CustomerReader;
 		}
 

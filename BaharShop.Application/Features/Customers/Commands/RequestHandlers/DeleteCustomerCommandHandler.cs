@@ -17,8 +17,8 @@ namespace BaharShop.Application.Features.Customers.Commands.RequestHandlers
 
         public async Task<ResultDTO> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
         {
-            Customer Customer = new Customer { Id = request.Id };
-            var result = await _genericRepository.Delete(Customer);
+            Customer customer = new Customer { Id = request.Id };
+            var result = await _genericRepository.Delete(customer);
             return result;
         }
     }

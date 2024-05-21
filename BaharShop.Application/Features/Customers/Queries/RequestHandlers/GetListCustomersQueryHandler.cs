@@ -9,17 +9,17 @@ namespace BaharShop.Application.Features.Customers.Queries.RequestHandlers
     public class GetListCustomersQueryHandler : IRequestHandler<GetListCustomersQuery, List<CustomerDTO>>
 	{
 		private readonly IMapper _mapper;
-		private readonly ICustomerReader _CustomerReader;
+		private readonly ICustomerReader _customerReader;
 
-		public GetListCustomersQueryHandler(IMapper mapper, ICustomerReader CustomerReader)
+		public GetListCustomersQueryHandler(IMapper mapper, ICustomerReader customerReader)
 		{
 			_mapper = mapper;
-			_CustomerReader = CustomerReader;
+			_customerReader = customerReader;
 		}
 
 		public async Task<List<CustomerDTO>> Handle(GetListCustomersQuery request, CancellationToken cancellationToken)
 		{
-			var all = await _CustomerReader.GetList(null, null);
+			var all = await _customerReader.GetList(null, null);
 			return _mapper.Map<List<CustomerDTO>>(all.ToList());
 		}
 	}

@@ -16,5 +16,11 @@ namespace BaharShop.Domain.Entities.Products
 
         [Description("قیمت")]
         public decimal Price { get; set; }
+
+        [Description("تعداد موجودی")]
+        public int? Inventory { get; set; }
+
+        [Description("وضعیت فعال بودن")]
+        public bool? IsActive { get; set; }
     }
 }

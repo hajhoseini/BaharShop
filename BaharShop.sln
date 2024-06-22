@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaharShop.Common", "BaharShop.Common\BaharShop.Common.csproj", "{E8947530-F200-4041-B1FD-64F2BBC0D589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaharShop.Common", "BaharShop.Common\BaharShop.Common.csproj", "{E8947530-F200-4041-B1FD-64F2BBC0D589}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaharShop.Domain", "BaharShop.Domain\BaharShop.Domain.csproj", "{12284BF6-77DF-4C74-8128-9C6CA49CCEE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaharShop.Domain", "BaharShop.Domain\BaharShop.Domain.csproj", "{12284BF6-77DF-4C74-8128-9C6CA49CCEE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaharShop.Application", "BaharShop.Application\BaharShop.Application.csproj", "{45CA9E5D-897D-466E-8FD2-F6C7CDB62EEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaharShop.Application", "BaharShop.Application\BaharShop.Application.csproj", "{45CA9E5D-897D-466E-8FD2-F6C7CDB62EEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaharShop.InfraStructure", "BaharShop.InfraStructure\BaharShop.InfraStructure.csproj", "{46332076-CA7C-4FA1-BC2D-3E848B1BE04B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaharShop.InfraStructure", "BaharShop.InfraStructure\BaharShop.InfraStructure.csproj", "{46332076-CA7C-4FA1-BC2D-3E848B1BE04B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaharShop.WebAPI", "BaharShop.WebAPI\BaharShop.WebAPI.csproj", "{8A4A129F-2D95-4523-A4CB-5839F417C48A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaharShop.WebAPI", "BaharShop.WebAPI\BaharShop.WebAPI.csproj", "{8A4A129F-2D95-4523-A4CB-5839F417C48A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaharShop.WebMVC", "BaharShop.WebMVC\BaharShop.WebMVC.csproj", "{4DA06E7F-A813-4C20-912D-42B759C3ED80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{8A4A129F-2D95-4523-A4CB-5839F417C48A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A4A129F-2D95-4523-A4CB-5839F417C48A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A4A129F-2D95-4523-A4CB-5839F417C48A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DA06E7F-A813-4C20-912D-42B759C3ED80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DA06E7F-A813-4C20-912D-42B759C3ED80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DA06E7F-A813-4C20-912D-42B759C3ED80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DA06E7F-A813-4C20-912D-42B759C3ED80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,9 @@ using BaharShop.Domain.Entities.OrderItems;
 using BaharShop.Domain.Entities.Orders;
 using BaharShop.Domain.Entities.Products;
 using BaharShop.Domain.Entities.Provinces;
+using BaharShop.Domain.Entities.Roles;
+using BaharShop.Domain.Entities.UserRoles;
+using BaharShop.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace BaharShop.InfraStructure.DBContext
@@ -26,6 +29,8 @@ namespace BaharShop.InfraStructure.DBContext
         public DbSet<Order> Order{ get; set; }
         public DbSet<Product> Product{ get; set; }
         public DbSet<Province> Province { get; set; }
-
+        public DbSet<User> User { get; set; }
+        public DbSet<Role> Role { get; set; }
+        public DbSet<UserRole> UserRole { get; set; }
     }
 }

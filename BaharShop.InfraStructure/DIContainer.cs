@@ -8,6 +8,9 @@ using BaharShop.Domain.IReaders.OrderItems;
 using BaharShop.Domain.IReaders.Orders;
 using BaharShop.Domain.IReaders.Products;
 using BaharShop.Domain.IReaders.Provinces;
+using BaharShop.Domain.IReaders.Roles;
+using BaharShop.Domain.IReaders.UserRoles;
+using BaharShop.Domain.IReaders.Users;
 using BaharShop.Domain.IRepositories;
 using BaharShop.Domain.IRepositories.Addresses;
 using BaharShop.Domain.IRepositories.Categories;
@@ -18,6 +21,9 @@ using BaharShop.Domain.IRepositories.OrderItems;
 using BaharShop.Domain.IRepositories.Orders;
 using BaharShop.Domain.IRepositories.Products;
 using BaharShop.Domain.IRepositories.Provinces;
+using BaharShop.Domain.IRepositories.Roles;
+using BaharShop.Domain.IRepositories.UserRoles;
+using BaharShop.Domain.IRepositories.Users;
 using BaharShop.InfraStructure.Readers;
 using BaharShop.InfraStructure.Readers.Addresss;
 using BaharShop.InfraStructure.Readers.Categories;
@@ -28,6 +34,9 @@ using BaharShop.InfraStructure.Readers.OrderItems;
 using BaharShop.InfraStructure.Readers.Orders;
 using BaharShop.InfraStructure.Readers.Products;
 using BaharShop.InfraStructure.Readers.Provinces;
+using BaharShop.InfraStructure.Readers.Roles;
+using BaharShop.InfraStructure.Readers.UserRoles;
+using BaharShop.InfraStructure.Readers.Users;
 using BaharShop.InfraStructure.Repositories;
 using BaharShop.InfraStructure.Repositories.Addresses;
 using BaharShop.InfraStructure.Repositories.Categories;
@@ -38,6 +47,9 @@ using BaharShop.InfraStructure.Repositories.OrderItems;
 using BaharShop.InfraStructure.Repositories.Orders;
 using BaharShop.InfraStructure.Repositories.Products;
 using BaharShop.InfraStructure.Repositories.Provinces;
+using BaharShop.InfraStructure.Repositories.Roles;
+using BaharShop.InfraStructure.Repositories.UserRoles;
+using BaharShop.InfraStructure.Repositories.Users;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BaharShop.InfraStructure
@@ -57,6 +69,9 @@ namespace BaharShop.InfraStructure
             service.AddScoped<IOrderRepository, OrderRepository>();
             service.AddScoped<IProductRepository, ProductRepository>();
             service.AddScoped<IProvinceRepository, ProvinceRepository>();
+            service.AddScoped<IUserRepository, UserRepository>();
+            service.AddScoped<IRoleRepository, RoleRepository>();
+            service.AddScoped<IUserRoleRepository, UserRoleRepository>();
 
             service.AddScoped(typeof(IGenericReader<>), typeof(GenericReader<>));
 
@@ -69,6 +84,9 @@ namespace BaharShop.InfraStructure
             service.AddScoped<IOrderReader, OrderReader>();
             service.AddScoped<IProductReader, ProductReader>();
             service.AddScoped<IProvinceReader, ProvinceReader>();
+            service.AddScoped<IUserReader, UserReader>();
+            service.AddScoped<IRoleReader, RoleReader>();
+            service.AddScoped<IUserRoleReader, UserRoleReader>();
 
             return service;
         }

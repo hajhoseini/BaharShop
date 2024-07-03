@@ -1,13 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace BaharShop.Domain.Entities.Base
 {
-    public class BaseEntity
+    public abstract class BaseEntity<TKey>
     {
         [Key]
-        public int Id { get; set; }
+        public TKey Id { get; set; }
 
-        [Required]
-        public DateTime CreateDate { get; set; }
+        public DateTime InsertDate { get; set; } = DateTime.Now;
+
+        public DateTime? UpdateDate { get; set; }
+
+        public bool IsRemoved { get; set; } = false;
+
+        public DateTime? RemoveDate { get; set; }
+    }
+
+    public abstract class BaseEntity : BaseEntity<int>
+    {
+
     }
 }

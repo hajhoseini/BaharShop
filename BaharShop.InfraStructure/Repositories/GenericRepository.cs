@@ -21,7 +21,7 @@ namespace BaharShop.InfraStructure.Repositories
 
             try
             {
-                PropertyInfo propertyInfo = entity.GetType().GetProperty("CreateDate");
+                PropertyInfo propertyInfo = entity.GetType().GetProperty("InsertDate");
                 if (propertyInfo != null)
                 {
                     propertyInfo.SetValue(entity, Convert.ChangeType(DateTime.Now, propertyInfo.PropertyType), null);

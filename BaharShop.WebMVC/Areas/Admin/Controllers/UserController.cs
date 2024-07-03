@@ -1,6 +1,8 @@
+using BaharShop.Application.Features.Roles.Queries.Requests;
 using BaharShop.Application.Features.Users.Queries.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BaharShop.WebMVC.Areas.Admin.Controllers
 {
@@ -22,8 +24,12 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            GetListRolesQuery query = new GetListRolesQuery();
+            var roles = await _mediator.Send(query);
+
+            ViewBag.Roles = new SelectList(roles, "Id", "Name");
             return View();
         }
     }

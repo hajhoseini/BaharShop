@@ -1,7 +1,17 @@
+using BaharShop.Application;
+using BaharShop.InfraStructure;
+using BaharShop.InfraStructure.DBContext;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<BaharShopDBContext>(options =>
+                        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddControllersWithViews();
+builder.Services.InfraStructureServiceCollections();
+builder.Services.ApplicationServiceCollections();
 
 var app = builder.Build();
 

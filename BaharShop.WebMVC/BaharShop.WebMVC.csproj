@@ -15,4 +15,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BaharShop.Application\BaharShop.Application.csproj" />
+    <ProjectReference Include="..\BaharShop.Common\BaharShop.Common.csproj" />
+    <ProjectReference Include="..\BaharShop.Domain\BaharShop.Domain.csproj" />
+    <ProjectReference Include="..\BaharShop.InfraStructure\BaharShop.InfraStructure.csproj" />
+  </ItemGroup>
+
 </Project>

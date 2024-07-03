@@ -21,8 +21,6 @@
                         </div>
                         <div class="card-body collapse show">
                             <div class="card-block card-dashboard">
-                                <p class="card-text">لیست کاربران فروشگاه باگتو</p>
-
                                 <form method="get" class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                     <fieldset class="form-group">
                                         <input type="text" class="form-control" name="serchkey">
@@ -35,7 +33,7 @@
                                         <table class="table table-striped table-bordered zero-configuration dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
                                             <thead>
                                                 <tr role="row">
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام: activate to sort column descending" style="width: 222px;">نام</th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام و نام خانوادگی: activate to sort column descending" style="width: 222px;">نام و نام خانوادگی</th>
                                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="ایمیل: activate to sort column ascending" style="width: 401px;">ایمیل</th>
                                                 </tr>
                                             </thead>
@@ -46,7 +44,7 @@
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">@item.FullName</td>
                                                         <td>@item.Email</td>
-                                                        <td>
+                                                        <td style="width:20%">
                                                             <button class="btn btn-info" onclick="ShowModalEdituser('@item.Id' , '@item.FullName')">ویرایش</button>
                                                             <button class="btn btn-danger" onclick="DeleteUser('@item.Id')">حذف</button>
                                                             @if (item.IsActive)
@@ -56,7 +54,7 @@
                                                             }
                                                             else
                                                             {
-                                                                <button class="btn btn-info" onclick="UserSatusChange('@item.Id')">فعال کردن کاربر  </button>
+                                                                <button class="btn btn-info" onclick="UserSatusChange('@item.Id')">فعال</button>
                                                             }
                                                         </td>
                                                     </tr>

@@ -22,10 +22,6 @@ namespace BaharShop.Application.Features.Users.Commands.RequestHandlers
 
         public async Task<ResultDTO> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            //var entity = _mapper.Map<User>(request.RegisterUserDTO);
-            //var result = await _genericRepository.Create(entity);
-            //return result;
-
             try
             {
                 var dto = request.RegisterUserDTO;
@@ -76,7 +72,6 @@ namespace BaharShop.Application.Features.Users.Commands.RequestHandlers
 
                 foreach (var item in dto.roles)
                 {
-                    //var roles = _context.Roles.Find(item.Id);
                     UserRoles.Add(new UserRole
                     {
                         RoleId = item.Id,
@@ -86,10 +81,7 @@ namespace BaharShop.Application.Features.Users.Commands.RequestHandlers
                 }
                 user.UserRoles = UserRoles;
                 user.IsActive = true;
-
-                //_context.Users.Add(user);
-
-                //_context.SaveChanges();
+                
                 ResultDTO register = await _userRepository.Register(user);
 
                 var result = new ResultDTO()

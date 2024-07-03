@@ -1,8 +1,8 @@
-﻿namespace BaharShop.Application.DTOs.Roles
+namespace BaharShop.Application.DTOs.Roles
 {
     public class RoleDTO
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
     }

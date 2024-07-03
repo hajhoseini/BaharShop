@@ -1,4 +1,5 @@
-﻿using BaharShop.Domain.Entities.Addresses;
+using BaharShop.Common.Enums;
+using BaharShop.Domain.Entities.Addresses;
 using BaharShop.Domain.Entities.Categories;
 using BaharShop.Domain.Entities.Cities;
 using BaharShop.Domain.Entities.Comments;
@@ -18,6 +19,13 @@ namespace BaharShop.InfraStructure.DBContext
     {
         public BaharShopDBContext(DbContextOptions<BaharShopDBContext> options) : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Role>().HasData(new Role { Id = 1, Name = nameof(UserRoles.Admin) });
+            modelBuilder.Entity<Role>().HasData(new Role { Id = 2, Name = nameof(UserRoles.Operator) });
+            modelBuilder.Entity<Role>().HasData(new Role { Id = 3, Name = nameof(UserRoles.Customer) });
         }
 
         public DbSet<Address> Address { get; set; }

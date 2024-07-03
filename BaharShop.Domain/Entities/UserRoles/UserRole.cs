@@ -1,18 +1,19 @@
-﻿using BaharShop.Domain.Entities.Roles;
+using BaharShop.Domain.Entities.Base;
+using BaharShop.Domain.Entities.Roles;
 using BaharShop.Domain.Entities.Users;
 
 namespace BaharShop.Domain.Entities.UserRoles
 {
-    public class UserRole
+    public class UserRole : BaseEntity
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         public virtual User User { get; set; }
 
-        public long UserId { get; set; }
+        public int UserId { get; set; }
 
         public virtual Role Role { get; set; }
 
-        public long RoleId { get; set; }
+        public int RoleId { get; set; }
     }
 }

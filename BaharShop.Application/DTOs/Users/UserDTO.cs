@@ -11,5 +11,7 @@ namespace BaharShop.Application.DTOs.Users
         public string Password { get; set; }
 
         public bool IsActive { get; set; }
+
+        public string Roles { get; set; }
     }
 }

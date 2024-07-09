@@ -1,5 +1,4 @@
 using MediatR;
-using AutoMapper;
 using BaharShop.Common;
 using BaharShop.Domain.IRepositories;
 using BaharShop.Domain.Entities.Users;
@@ -12,13 +11,11 @@ namespace BaharShop.Application.Features.Users.Commands.RequestHandlers
 	{
 		private readonly IGenericRepository<User> _genericRepository;
         private readonly IGenericReader<User> _genericReader;
-        private readonly IMapper _mapper;
 
-		public ChangeStatusUserCommandHandler(IGenericRepository<User> genericRepository, IGenericReader<User> genericReader, IMapper mapper)
+		public ChangeStatusUserCommandHandler(IGenericRepository<User> genericRepository, IGenericReader<User> genericReader)
 		{
 			_genericRepository = genericRepository;
             _genericReader = genericReader;
-            _mapper = mapper;
 		}
 
         public async Task<ResultDTO> Handle(ChangeStatusUserCommand request, CancellationToken cancellationToken)

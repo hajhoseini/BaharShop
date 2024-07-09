@@ -111,5 +111,12 @@ namespace BaharShop.WebMVC.Controllers
             }
             return Json(SignInResult);
         }
+
+        public IActionResult SignOut()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

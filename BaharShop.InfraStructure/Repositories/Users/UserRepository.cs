@@ -14,9 +14,9 @@ namespace BaharShop.InfraStructure.Repositories.Users
             _dbContext = dbContext;
         }
 
-        public async Task<ResultDTO> Register(User entity)
+        public async Task<ResultDTO<User>> Register(User entity)
         {
-            var result = new ResultDTO();
+            var result = new ResultDTO<User>();
 
             try
             {
@@ -25,6 +25,7 @@ namespace BaharShop.InfraStructure.Repositories.Users
                 await _dbContext.AddAsync(entity);
                 await _dbContext.SaveChangesAsync(CancellationToken.None);
 
+                result.Data = entity;
                 result.IsSuccess = true;
             }
             catch (Exception ex)

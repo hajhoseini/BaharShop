@@ -1,15 +1,16 @@
 using MediatR;
 using AutoMapper;
 using BaharShop.Common;
-using BaharShop.Domain.IRepositories;
 using BaharShop.Domain.Entities.Users;
 using BaharShop.Application.Features.Users.Commands.Requests;
 using BaharShop.Domain.Entities.UserRoles;
 using BaharShop.Domain.IRepositories.Users;
+using System.Text.RegularExpressions;
+using BaharShop.Application.DTOs.Users;
 
 namespace BaharShop.Application.Features.Users.Commands.RequestHandlers
 {
-    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, ResultDTO>
+    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, ResultDTO<UserDTO>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
@@ -20,7 +21,7 @@ namespace BaharShop.Application.Features.Users.Commands.RequestHandlers
             _mapper = mapper;
         }
 
-        public async Task<ResultDTO> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+        public async Task<ResultDTO<UserDTO>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -28,8 +29,9 @@ namespace BaharShop.Application.Features.Users.Commands.RequestHandlers
 
                 if (string.IsNullOrWhiteSpace(dto.FullName))
                 {
-                    return new ResultDTO()
+                    return new ResultDTO<UserDTO>()
                     {
+                        Data = null,
                         IsSuccess = false,
                         Message = "نام و نام خانوادگی را وارد نمایید"
                     };
@@ -37,35 +39,65 @@ namespace BaharShop.Application.Features.Users.Commands.RequestHandlers
 
                 if (string.IsNullOrWhiteSpace(dto.Email))
                 {
-                    return new ResultDTO()
+                    return new ResultDTO<UserDTO>()
                     {
+                        Data = null,
                         IsSuccess = false,
                         Message = "پست الکترونیک را وارد نمایید"
                     };
                 }
-                
+
                 if (string.IsNullOrWhiteSpace(dto.Password))
                 {
-                    return new ResultDTO()
+                    return new ResultDTO<UserDTO>()
                     {
+                        Data = null,
                         IsSuccess = false,
                         Message = "رمز عبور را وارد نمایید"
                     };
                 }
+
+                if (dto.Password.Length < 8)
+                {
+                    return new ResultDTO<UserDTO>
+                    {
+                        Data = null,
+                        IsSuccess = false,
+                        Message = "رمز عبور باید حداقل 8 کاراکتر باشد"
+                    };
+                }
+
                 if (dto.Password != dto.RePassword)
                 {
-                    return new ResultDTO()
+                    return new ResultDTO<UserDTO>()
                     {
+                        Data = null,
                         IsSuccess = false,
                         Message = "رمز عبور و تکرار آن برابر نیست"
                     };
                 }
 
+                string emailRegex = @"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]+\.[A-Z]{2,}$";
+
+                var match = Regex.Match(dto.Email, emailRegex, RegexOptions.IgnoreCase);
+                if (!match.Success)
+                {
+                    return new ResultDTO<UserDTO>()
+                    {
+                        Data = null,
+                        IsSuccess = false,
+                        Message = "پست الکترونیک خود را به درستی وارد نمایید"
+                    };
+                }
+
+                var passwordHasher = new PasswordHasher();
+                var hashedPassword = passwordHasher.HashPassword(dto.Password);
+
                 User user = new User()
                 {
                     Email = dto.Email,
                     FullName = dto.FullName,
-                    Password = HashPassword.Execute(dto.Password),
+                    Password = hashedPassword,
                 };
 
                 List<UserRole> UserRoles = new List<UserRole>();
@@ -81,11 +113,12 @@ namespace BaharShop.Application.Features.Users.Commands.RequestHandlers
                 }
                 user.UserRoles = UserRoles;
                 user.IsActive = true;
-                
-                ResultDTO register = await _userRepository.Register(user);
 
-                var result = new ResultDTO()
+                ResultDTO<User> register = await _userRepository.Register(user);
+
+                var result = new ResultDTO<UserDTO>()
                 {
+                    Data = _mapper.Map<UserDTO>(register.Data),
                     IsSuccess = register.IsSuccess
                 };
 
@@ -98,8 +131,9 @@ namespace BaharShop.Application.Features.Users.Commands.RequestHandlers
             }
             catch (Exception)
             {
-                return new ResultDTO()
+                return new ResultDTO<UserDTO>()
                 {
+                    Data = null,
                     IsSuccess = false,
                     Message = "ثبت نام انجام نشد !"
                 };

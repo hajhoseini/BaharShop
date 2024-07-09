@@ -1,6 +1,7 @@
 ﻿using BaharShop.Application.DTOs.Roles;
 using BaharShop.Application.DTOs.Users;
 using BaharShop.Application.Features.Users.Commands.Requests;
+using BaharShop.Application.Features.Users.Queries.Requests;
 using BaharShop.Common;
 using BaharShop.WebMVC.Models.AuthenticationViewModel;
 using MediatR;
@@ -75,6 +76,40 @@ namespace BaharShop.WebMVC.Controllers
             }
 
             return Json(signeUpResult);
+        }
+
+        public IActionResult SignIn(string returnUrl = "/")
+        {
+            ViewBag.url = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SignIn(string Email, string Password, string url = "/")
+        {
+            var query = new SignInQuery { UserName = Email, Password = Password };
+
+            var SignInResult = await _mediator.Send(query);
+            if (SignInResult.IsSuccess == true)
+            {
+                var claims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.NameIdentifier,SignInResult.Data.Id.ToString()),
+                    new Claim(ClaimTypes.Email, SignInResult.Data.Email),
+                    new Claim(ClaimTypes.Name, SignInResult.Data.FullName),
+                    new Claim(ClaimTypes.Role, SignInResult.Data.Roles),
+                };
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+                var properties = new AuthenticationProperties()
+                {
+                    IsPersistent = true,
+                    ExpiresUtc = DateTime.Now.AddDays(5),
+                };
+                HttpContext.SignInAsync(principal, properties);
+            }
+            return Json(SignInResult);
         }
     }
 }

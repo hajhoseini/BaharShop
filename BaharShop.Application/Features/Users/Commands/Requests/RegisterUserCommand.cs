@@ -4,7 +4,7 @@ using MediatR;
 
 namespace BaharShop.Application.Features.Users.Commands.Requests
 {
-    public class RegisterUserCommand : IRequest<ResultDTO>
+    public class RegisterUserCommand : IRequest<ResultDTO<UserDTO>>
     {
         public RegisterUserDTO RegisterUserDTO { get; set; }
     }

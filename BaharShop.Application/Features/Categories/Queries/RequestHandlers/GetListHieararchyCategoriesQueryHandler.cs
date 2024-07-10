@@ -7,18 +7,18 @@ using BaharShop.Domain.Entities.Categories;
 
 namespace BaharShop.Application.Features.Categories.Queries.RequestHandlers
 {
-	public class GetListCategoriesQueryHandler : IRequestHandler<GetListCategoriesQuery, List<CategoryDTO>>
+	public class GetListHieararchyCategoriesQueryHandler : IRequestHandler<GetListHieararchyCategoriesQuery, List<CategoryDTO>>
 	{
 		private readonly IMapper _mapper;
 		private readonly ICategoryReader _categoryReader;
 
-		public GetListCategoriesQueryHandler(IMapper mapper, ICategoryReader categoryReader)
+		public GetListHieararchyCategoriesQueryHandler(IMapper mapper, ICategoryReader categoryReader)
 		{
 			_mapper = mapper;
 			_categoryReader = categoryReader;
 		}
 
-		public async Task<List<CategoryDTO>> Handle(GetListCategoriesQuery request, CancellationToken cancellationToken)
+		public async Task<List<CategoryDTO>> Handle(GetListHieararchyCategoriesQuery request, CancellationToken cancellationToken)
 		{
 			var all = await _categoryReader.GetList();
 			var categoryList = all.ToList();

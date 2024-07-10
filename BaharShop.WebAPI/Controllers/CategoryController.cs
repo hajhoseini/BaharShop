@@ -17,7 +17,7 @@ namespace BaharShop.WebAPI.Controllers
         }        
 
         [HttpGet]
-        public async Task<IActionResult> Index([FromBody] GetListCategoriesQuery query)
+        public async Task<IActionResult> Index([FromBody] GetListHieararchyCategoriesQuery query)
         {
             var result = await _mediator.Send(query);
             return Ok(new { Data = result });

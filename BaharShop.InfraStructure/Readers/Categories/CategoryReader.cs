@@ -1,6 +1,7 @@
 ﻿using BaharShop.Domain.Entities.Categories;
 using BaharShop.Domain.IReaders.Categories;
 using BaharShop.InfraStructure.DBContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace BaharShop.InfraStructure.Readers.Categories
 {
@@ -17,6 +18,16 @@ namespace BaharShop.InfraStructure.Readers.Categories
         {
             var all = _dbContext.Category.ToList();
             return all;
+        }
+
+        public async Task<List<Category>> GetListByParentId(int? parentId)
+        {
+            var categories = _dbContext.Category
+               .Include(p => p.Children)
+               .Where(p => p.ParentId == parentId)
+               .ToList();
+
+            return categories;
         }
     }
 }

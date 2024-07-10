@@ -14,5 +14,7 @@ namespace BaharShop.Application.DTOs.Categories
 
         [Description("دسته های فرزند")]
         public List<CategoryDTO> Children { get; set; }
+
+        public bool HasChild { get; set; }
     }
 }

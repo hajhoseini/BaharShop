@@ -5,5 +5,7 @@ namespace BaharShop.Domain.IReaders.Categories
     public interface ICategoryReader : IGenericReader<Category>
     {
         Task<List<Category>> GetList();
+
+        Task<List<Category>> GetListByParentId(int? parentId);
     }
 }

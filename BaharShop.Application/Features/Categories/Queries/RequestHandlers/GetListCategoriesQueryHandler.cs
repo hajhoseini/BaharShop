@@ -22,7 +22,6 @@ namespace BaharShop.Application.Features.Categories.Queries.RequestHandlers
 			var categoryList = await _categoryReader.GetListByParentId(request.parentId);
 
 			var categoryDTOList = categoryList
-									.Where(c => c.ParentId == null)
 									.Select(c => new CategoryDTO()
 									{
 										Id = c.Id,

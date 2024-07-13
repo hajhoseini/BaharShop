@@ -27,17 +27,43 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
 
             List<CategoryViewModel> list = new List<CategoryViewModel>();
 
-            foreach (var category in result)
+            if(parentId != null && parentId > 0)
             {
-                list.Add(
-                            new CategoryViewModel()
-                            {
-                                Id = category.Id,
-                                Name = category.Name,
-                                HasChild = category.HasChild,
-                                ParentId = category.ParentId
-                            }
-                        );
+                GetCategoryQuery parentQuery = new GetCategoryQuery()
+                { 
+                    Id = parentId == null ? default(int) : parentId.Value 
+                };
+                var parent = await _mediator.Send(parentQuery);
+
+                foreach (var category in result)
+                {
+                    list.Add(
+                                new CategoryViewModel()
+                                {
+                                    Id = category.Id,
+                                    Name = category.Name,
+                                    HasChild = category.HasChild,
+                                    ParentId = category.ParentId,
+                                    ParentName = parent.Name
+                                }
+                            );
+                }
+            }
+            else
+            {
+                foreach (var category in result)
+                {
+                    list.Add(
+                                new CategoryViewModel()
+                                {
+                                    Id = category.Id,
+                                    Name = category.Name,
+                                    HasChild = category.HasChild,
+                                    ParentId = category.ParentId,
+                                    ParentName = "-"
+                                }
+                            );
+                }
             }
 
             return View(list);

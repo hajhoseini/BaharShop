@@ -42,16 +42,18 @@
                                                         <td>
                                                             @{
                                                                 //string parent = item.Parent != null ? item.Parent.Name : "-";
-                                                                string parent = "-";
+                                                                string parent = item.ParentName != null ? item.ParentName : "-";
                                                             }
 
                                                             <text> @parent </text>
                                                         </td>
                                                         <td>
-                                                            @if (item.ParentId == null)
+                                                            @*@if (item.ParentId == null)
                                                             {
                                                                 <a href="~/admin/category/create?ParentId=@item.Id" class="btn btn-success">افزودن فرزند</a>
-                                                            }
+                                                            }*@
+
+                                                            <a href="~/admin/category/create?ParentId=@item.Id" class="btn btn-success">افزودن فرزند</a>
 
                                                             @if (item.HasChild == true)
                                                             {

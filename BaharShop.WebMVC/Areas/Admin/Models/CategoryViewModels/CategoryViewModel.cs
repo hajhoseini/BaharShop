@@ -9,5 +9,7 @@
         public bool HasChild { get; set; }
 
         public int? ParentId { get; set; }
+
+        public string ParentName { get; set; }
     }
 }

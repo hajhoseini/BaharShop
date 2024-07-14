@@ -20,9 +20,21 @@ namespace BaharShop.Application.Features.Products.Commands.RequestHandlers
 
         public async Task<ResultDTO> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var entity = _mapper.Map<Product>(request.productDTO);
-            var result = await _genericRepository.Create(entity);
-            return result;
+            try
+            {
+                var entity = _mapper.Map<Product>(request.productDTO);
+                var result = await _genericRepository.Create(entity);
+                result.Message = "محصول با موفقیت ثبت شد";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new ResultDTO
+                {
+                    IsSuccess = false,
+                    Message = "خطا رخ داد ",
+                };
+            }
         }
     }
 }

@@ -33,8 +33,9 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductDTO request)
+        public async Task<IActionResult> Create(ProductDTO request, List<ProductFeatureDTO> Features)
         {
+            request.Features = Features;
             CreateProductCommand command = new CreateProductCommand() { productDTO = request };
             var result = await _mediator.Send(command);
 

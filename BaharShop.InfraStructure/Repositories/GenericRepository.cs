@@ -74,5 +74,25 @@ namespace BaharShop.InfraStructure.Repositories
             
             return result;
         }
+
+        public async Task<ResultDTO> AddRange(List<T> entities)
+        {
+            var result = new ResultDTO();
+
+            try
+            {
+                await _dbContext.Set<T>().AddRangeAsync(entities);
+                await _dbContext.SaveChangesAsync(CancellationToken.None);
+
+                result.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
     }
 }

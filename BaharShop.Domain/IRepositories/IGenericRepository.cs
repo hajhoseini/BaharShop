@@ -9,5 +9,7 @@ namespace BaharShop.Domain.IRepositories
         Task<ResultDTO> Update(T entity);
 
         Task<ResultDTO> Delete(T entity);
+
+        Task<ResultDTO> AddRange(List<T> entities);
     }
 }

@@ -22,5 +22,9 @@ namespace BaharShop.Domain.Entities.Products
 
         [Description("وضعیت فعال بودن")]
         public bool? IsActive { get; set; }
+
+        public virtual ICollection<ProductImage> ProductImages { get; set; }
+
+        public virtual ICollection<ProductFeature> ProductFeatures { get; set; }
     }
 }

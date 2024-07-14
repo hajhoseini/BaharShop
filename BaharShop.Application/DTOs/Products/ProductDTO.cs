@@ -1,4 +1,6 @@
-﻿namespace BaharShop.Application.DTOs.Products
+﻿using Microsoft.AspNetCore.Http;
+
+namespace BaharShop.Application.DTOs.Products
 {
     public class ProductDTO
     {
@@ -17,5 +19,7 @@
         public bool? IsActive { get; set; }
 
         public List<ProductFeatureDTO> Features { get; set; }
+
+        public List<IFormFile> Images { get; set; }
     }
 }

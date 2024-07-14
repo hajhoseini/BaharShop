@@ -36,6 +36,15 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
         public async Task<IActionResult> Create(ProductDTO request, List<ProductFeatureDTO> Features)
         {
             request.Features = Features;
+
+            List<IFormFile> images = new List<IFormFile>();
+            for (int i = 0; i < Request.Form.Files.Count; i++)
+            {
+                var file = Request.Form.Files[i];
+                images.Add(file);
+            }
+            request.Images = images;
+
             CreateProductCommand command = new CreateProductCommand() { productDTO = request };
             var result = await _mediator.Send(command);
 

@@ -1,27 +1,28 @@
-﻿using System.ComponentModel;
+﻿using BaharShop.Domain.Entities.Categories;
+using Microsoft.AspNetCore.Http;
 
 namespace BaharShop.Application.DTOs.Products
 {
     public class ProductDTO
     {
         public int Id { get; set; }
-
-        [Description("عنوان محصول")]
+        
         public string Title { get; set; }
-
-        [Description("شرح محصول")]
+        
         public string Description { get; set; }
 
-        [Description("دسته")]
+        public virtual Category Category { get; set; }
+
         public int CategoryId { get; set; }
-
-        [Description("قیمت")]
+        
         public decimal Price { get; set; }
-
-        [Description("تعداد موجودی")]
+        
         public int? Inventory { get; set; }
+        
+        public bool IsActive { get; set; }
 
-        [Description("وضعیت فعال بودن")]
-        public bool? IsActive { get; set; }
+        public List<ProductFeatureDTO> Features { get; set; }
+
+        public List<IFormFile> Images { get; set; }
     }
 }

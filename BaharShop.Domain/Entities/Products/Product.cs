@@ -1,4 +1,5 @@
 ﻿using BaharShop.Domain.Entities.Base;
+using BaharShop.Domain.Entities.Categories;
 using System.ComponentModel;
 
 namespace BaharShop.Domain.Entities.Products
@@ -11,6 +12,8 @@ namespace BaharShop.Domain.Entities.Products
         [Description("شرح محصول")]
         public string Description { get; set; }
 
+        public virtual Category Category { get; set; }
+
         [Description("دسته")]
         public int CategoryId { get; set; }
 
@@ -22,5 +25,9 @@ namespace BaharShop.Domain.Entities.Products
 
         [Description("وضعیت فعال بودن")]
         public bool? IsActive { get; set; }
+
+        public virtual ICollection<ProductImage> ProductImages { get; set; }
+
+        public virtual ICollection<ProductFeature> ProductFeatures { get; set; }
     }
 }

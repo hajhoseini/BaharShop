@@ -46,5 +46,9 @@ namespace BaharShop.InfraStructure.DBContext
         public DbSet<User> User { get; set; }
         public DbSet<Role> Role { get; set; }
         public DbSet<UserRole> UserRole { get; set; }
+
+        public DbSet<ProductImage> ProductImage { get; set; }
+
+        public DbSet<ProductFeature> ProductFeature { get; set; }
     }
 }

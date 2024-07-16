@@ -2,6 +2,7 @@
 using BaharShop.Domain.IReaders.Products;
 using BaharShop.InfraStructure.DBContext;
 using Microsoft.EntityFrameworkCore;
+using BaharShop.Common;
 
 namespace BaharShop.InfraStructure.Readers.Products
 {
@@ -14,10 +15,11 @@ namespace BaharShop.InfraStructure.Readers.Products
             _dbContext = dbContext;
         }
 
-        public List<Product> GetListProductsInAdminPanel()
+        public List<Product> GetListProductsInAdminPanel(int page, int pageSize, out int rowCount)
         {
             var products = _dbContext.Product
                 .Include(p => p.Category)
+                .ToPaged(page, pageSize, out rowCount)
                 .ToList();
 
             return products;

@@ -19,10 +19,14 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
             _mediator = mediator;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int Page = 1, int PageSize = 5)
         {
-            GetListProductsInAdminPanelQuery query = new GetListProductsInAdminPanelQuery();
-            var productList = await _mediator.Send(query);            
+            GetListProductsInAdminPanelQuery query = new GetListProductsInAdminPanelQuery()
+            {
+                CurrentPage = Page,
+                PageSize = PageSize
+            };
+            var productList = await _mediator.Send(query);
 
             return View(productList.Data);
         }

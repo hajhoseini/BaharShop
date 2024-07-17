@@ -55,5 +55,13 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
 
             return Json(result);
         }
+
+        public async Task<IActionResult> Detail(int Id)
+        {
+            GetProductQuery query = new GetProductQuery() { Id = Id};
+            var result = await _mediator.Send(query);
+
+            return View(result);
+        }
     }
 }

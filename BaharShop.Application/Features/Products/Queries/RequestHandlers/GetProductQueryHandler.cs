@@ -19,7 +19,7 @@ namespace BaharShop.Application.Features.Products.Queries.RequestHandlers
 
         public async Task<ProductDTO> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
-            var productEntity = await _productReader.GetById(request.Id);
+            var productEntity = await _productReader.GetById(request.Id, "Category");
             return _mapper.Map<ProductDTO>(productEntity);
         }
     }

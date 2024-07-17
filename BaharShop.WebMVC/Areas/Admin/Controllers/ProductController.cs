@@ -1,9 +1,11 @@
 ﻿using BaharShop.Application.DTOs.Products;
 using BaharShop.Application.Features.Categories.Queries.Requests;
 using BaharShop.Application.Features.Products.Commands.Requests;
+using BaharShop.Application.Features.Products.Queries.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BaharShop.WebMVC.Areas.Admin.Controllers
 {
@@ -17,9 +19,12 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
             _mediator = mediator;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            GetListProductsInAdminPanelQuery query = new GetListProductsInAdminPanelQuery();
+            var productList = await _mediator.Send(query);            
+
+            return View(productList.Data);
         }
 
         [HttpGet]

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BaharShop.Domain.Entities.Categories;
+using Microsoft.AspNetCore.Http;
 
 namespace BaharShop.Application.DTOs.Products
 {
@@ -9,14 +10,16 @@ namespace BaharShop.Application.DTOs.Products
         public string Title { get; set; }
         
         public string Description { get; set; }
-        
+
+        public virtual Category Category { get; set; }
+
         public int CategoryId { get; set; }
         
         public decimal Price { get; set; }
         
         public int? Inventory { get; set; }
         
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         public List<ProductFeatureDTO> Features { get; set; }
 

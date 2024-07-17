@@ -1,4 +1,5 @@
-﻿@model BaharShop.Application.DTOs.Products.ProductsListAdminPanelDTO;
+﻿@addTagHelper *, LazZiya.TagHelpers
+@model BaharShop.Application.DTOs.Products.ProductsListAdminPanelDTO;
 
 @{
     ViewData["Title"] = "لیست محصولات";
@@ -56,6 +57,24 @@
                                         </table>
                                     </div>
                                 </div>
+
+                                <div class="  text-center">
+                                    <paging total-records="Model.RowCount"
+                                            page-no="Model.CurrentPage"
+                                            page-size="Model.PageSize"
+                                            show-prev-next="true"
+                                            show-total-pages="false"
+                                            show-total-records="false"
+                                            show-page-size-nav="true"
+                                            show-first-numbered-page="true"
+                                            show-last-numbered-page="true"
+                                            query-string-key-page-no="Page"
+                                            query-string-key-page-size="PageSize"
+                                            gap-size="2">
+                                    </paging>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>

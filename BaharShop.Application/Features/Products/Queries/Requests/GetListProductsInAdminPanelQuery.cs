@@ -6,5 +6,8 @@ namespace BaharShop.Application.Features.Products.Queries.Requests
 {
     public class GetListProductsInAdminPanelQuery : IRequest<ResultDTO<ProductsListAdminPanelDTO>>
     {
+        public int CurrentPage { get; set; }
+
+        public int PageSize { get; set; }
     }
 }

@@ -20,13 +20,18 @@ namespace BaharShop.Application.Features.Products.Queries.RequestHandlers
 
 		public async Task<ResultDTO<ProductsListAdminPanelDTO>> Handle(GetListProductsInAdminPanelQuery request, CancellationToken cancellationToken)
 		{
-            var products = _productReader.GetListProductsInAdminPanel();
+            int rowCount = 0;
+
+            var products = _productReader.GetListProductsInAdminPanel(request.CurrentPage, request.PageSize, out rowCount);
 
             return new ResultDTO<ProductsListAdminPanelDTO>()
             {
                 Data = new ProductsListAdminPanelDTO()
                 {
                     Products = _mapper.Map<List<ProductDTO>>(products),
+                    CurrentPage = request.CurrentPage,
+                    PageSize = request.PageSize,
+                    RowCount = rowCount
                 },
                 IsSuccess = true,
                 Message = "",

@@ -8,6 +8,6 @@ namespace BaharShop.Domain.Entities.Products
 
         public virtual Product Product { get; set; }
 
-        public long ProductId { get; set; }        
+        public int ProductId { get; set; }        
     }
 }

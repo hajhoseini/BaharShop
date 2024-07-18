@@ -11,7 +11,7 @@ namespace BaharShop.Application.DTOs.Products
         
         public string Description { get; set; }
 
-        public virtual Category Category { get; set; }
+        public Category? Category { get; set; }
 
         public int CategoryId { get; set; }
         

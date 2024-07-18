@@ -41,24 +41,26 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
             return View();
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> Create(ProductDTO request, List<ProductFeatureDTO> Features)
+        public async Task<IActionResult> Create([FromForm] ProductDTO request, [FromForm] List<IFormFile> images, [FromForm] List<ProductFeatureDTO> features)
         {
-            request.Features = Features;
-
-            List<IFormFile> images = new List<IFormFile>();
-            for (int i = 0; i < Request.Form.Files.Count; i++)
+            if (!ModelState.IsValid)
             {
-                var file = Request.Form.Files[i];
-                images.Add(file);
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                return Json(new { IsSuccess = false, Message = "Validation failed", Errors = errors });
             }
-            request.Images = images;
 
-            CreateProductCommand command = new CreateProductCommand() { productDTO = request };
+            request.Images = images;
+            request.Features = features;
+
+            var command = new CreateProductCommand { productDTO = request };
             var result = await _mediator.Send(command);
 
             return Json(result);
         }
+
+
 
         public async Task<IActionResult> Detail(int Id)
         {

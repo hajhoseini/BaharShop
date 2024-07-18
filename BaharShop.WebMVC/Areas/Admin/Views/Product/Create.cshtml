@@ -26,50 +26,49 @@
 
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput">نام محصول </label>
+                                            <label for="Title">نام محصول </label>
                                             <input type="text" class="form-control" id="Title">
                                         </fieldset>
                                     </div>
 
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput">دسته بندی </label>
-                                     
+                                            <label for="Category">دسته بندی </label>
                                             <select class="form-control" id="Category" asp-items="@ViewBag.Categories"></select>
                                         </fieldset>
                                     </div>
 
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput">نمایش داده شود؟ </label>
+                                            <label for="IsActive">نمایش داده شود؟ </label>
                                             <input type="checkbox" class="form-control" id="IsActive">
                                         </fieldset>
                                     </div>
 
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput"> قیمت</label>
+                                            <label for="Price">قیمت</label>
                                             <input type="number" class="form-control" id="Price">
                                         </fieldset>
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput"> تعداد موجودی</label>
+                                            <label for="Inventory">تعداد موجودی</label>
                                             <input type="number" class="form-control" id="Inventory">
                                         </fieldset>
                                     </div>
 
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput">تصاویر </label>
+                                            <label for="Images">تصاویر </label>
                                             <input type="file" multiple class="form-control" accept="image/*" id="Images">
                                         </fieldset>
                                     </div>
-                                    
+
                                     <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput"> توضیحات</label>
-                                            <textarea id="Description" class="form-control " rows="5"></textarea>
+                                            <label for="Description">توضیحات</label>
+                                            <textarea id="Description" class="form-control" rows="5"></textarea>
                                         </fieldset>
                                     </div>
 
@@ -78,14 +77,14 @@
 
                                     <div class="col-xl-2 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput"> نام ویژگی </label>
+                                            <label for="txtDisplayName">نام ویژگی </label>
                                             <input type="text" class="form-control" id="txtDisplayName" placeholder="نام ویژگی" />
                                         </fieldset>
                                     </div>
 
                                     <div class="col-xl-2 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput"> مقدار ویژگی </label>
+                                            <label for="txtValue">مقدار ویژگی </label>
                                             <input type="text" class="form-control" id="txtValue" placeholder="مقدار ویژگی" />
                                         </fieldset>
                                     </div>
@@ -98,18 +97,12 @@
 
                                     <br class="clear" />
 
-                                    <table id="tbl_Features" class="col-md-12 table table-bordered table-hover  table-condensed table-responsive">
+                                    <table id="tbl_Features" class="col-md-12 table table-bordered table-hover table-condensed table-responsive">
                                         <thead>
                                             <tr>
-                                                <th>
-                                                    نام ویژگی
-                                                </th>
-                                                <th>
-                                                    مقدار ویژگی
-                                                </th>
-                                                <th>
-
-                                                </th>
+                                                <th>نام ویژگی</th>
+                                                <th>مقدار ویژگی</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -118,7 +111,7 @@
                                     <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <br />
-                                            <a id="btnAddProduct" class="btn btn-success col-md-12"> افزودن محصول  </a>
+                                            <a id="btnAddProduct" class="btn btn-success col-md-12"> افزودن محصول </a>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -131,29 +124,19 @@
     </div>
 </section>
 
-@section Scripts
-{
-
+@section Scripts {
     <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
     <script src="~/Sweetalert2/sweetalert2.min.js"></script>
 
-
     <script>
-
         $("#btnAddFeatures").on("click", function () {
-
             var txtDisplayName = $("#txtDisplayName").val();
             var txtValue = $("#txtValue").val();
 
-            if (txtDisplayName == "" || txtValue == "") {
-                swal.fire(
-                    'هشدار!',
-                    "نام و مقدار را باید وارد کنید",
-                    'warning'
-                );
-            }
-            else {
-                $('#tbl_Features tbody').append('<tr> <td>' + txtDisplayName + '</td>  <td>' + txtValue + '</td> <td> <a class="idFeatures btnDelete btn btn-danger"> حذف </a> </td> </tr>');
+            if (txtDisplayName === "" || txtValue === "") {
+                Swal.fire('هشدار!', "نام و مقدار را باید وارد کنید", 'warning');
+            } else {
+                $('#tbl_Features tbody').append('<tr><td>' + txtDisplayName + '</td><td>' + txtValue + '</td><td><a class="idFeatures btnDelete btn btn-danger"> حذف </a></td></tr>');
                 $("#txtDisplayName").val('');
                 $("#txtValue").val('');
             }
@@ -164,15 +147,14 @@
         });
 
         $('#btnAddProduct').on('click', function () {
-
             var data = new FormData();
- 
+
             //دریافت مقادیر از تکس باکس ها و....
             data.append("Title", $("#Title").val());
             data.append("CategoryId", $('#Category').find('option:selected').val());
-            data.append("IsActive", $("#IsActive").attr("checked") ? true : false);
+            data.append("IsActive", $("#IsActive").is(":checked"));
             data.append("Price", $("#Price").val());
-            data.append("Inventory", $("#Inventory").val());                       
+            data.append("Inventory", $("#Inventory").val());
             data.append("Description", $("#Description").val());
 
             //دریافت عکس های انتخاب شده توسط کاربر و قرار دادن عکس ها در متغیر data
@@ -180,65 +162,44 @@
 
             if (productImages.files.length > 0) {
                 for (var i = 0; i < productImages.files.length; i++) {
-                    data.append('Images-' + i, productImages.files[i]);
+                    data.append('Images', productImages.files[i]);
                 }
             }
 
             //دریافت ویژگی های محصول از جدول
-            var dataFeaturesViewModel = $('#tbl_Features tr:gt(0)').map(function () {
+            var dataFeatures = $('#tbl_Features tbody tr').map(function () {
                 return {
                     DisplayName: $(this.cells[0]).text(),
                     Value: $(this.cells[1]).text(),
                 };
             }).get();
 
-            $.each(dataFeaturesViewModel, function (i, val) {
-                data.append('[' + i + '].DisplayName', val.DisplayName);
-                data.append('[' + i + '].Value', val.Value);
-
-            });
+            for (var i = 0; i < dataFeatures.length; i++) {
+                data.append(`Features[${i}].DisplayName`, dataFeatures[i].DisplayName);
+                data.append(`Features[${i}].Value`, dataFeatures[i].Value);
+            }
 
             // ارسال اطلاعات به کنترلر
-            var ajaxRequest = $.ajax({
+            $.ajax({
                 type: "POST",
-                url: "Create",
+                url: "/admin/product/Create",
                 contentType: false,
                 processData: false,
                 data: data,
-                success: function (data) {
-
-                    if (data.isSuccess == true) {
-
-                        swal.fire(
-                            'موفق!',
-                            data.message,
-                            'success'
-                        ).then(function (isConfirm) {
+                success: function (response) {
+                    if (response.isSuccess) {
+                        Swal.fire('موفق!', response.message, 'success').then(function () {
                             window.location.href = "/Admin/Product/";
-
                         });
+                    } else {
+                        var errorMessages = response.errors ? response.errors.join('<br>') : response.message;
+                        Swal.fire('هشدار!', errorMessages, 'warning');
                     }
-                    else {
-
-                        swal.fire(
-                            'هشدار!',
-                            data.message,
-                            'warning'
-                        );
-                    }
-
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status);
-                    alert(thrownError);
+                    Swal.fire('خطا!', 'خطایی رخ داده است: ' + thrownError, 'error');
                 }
-
-            });
-
-            ajaxRequest.done(function (xhr, textStatus) {
-                // Do other operation
             });
         });
     </script>
 }
-

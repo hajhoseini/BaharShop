@@ -4,5 +4,6 @@ namespace BaharShop.Domain.IReaders.Users
 {
     public interface IUserReader : IGenericReader<User>
     {
+        List<User> GetListUsersInAdminPanel(int currentPage, int pageSize, out int rowCount);
     }
 }

@@ -20,6 +20,15 @@ namespace BaharShop.Application.Features.Categories.Commands.RequestHandlers
 
         public async Task<ResultDTO> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
+            if(request.categoryDTO.Name == null)
+            {
+                return new ResultDTO
+                {
+                    IsSuccess = false,
+                    Message = "نام دسته بندی اجباری است",
+                };
+            }
+
             var entity = _mapper.Map<Category>(request.categoryDTO);
             var result = await _genericRepository.Create(entity);
             return result;

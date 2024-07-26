@@ -12,11 +12,4 @@
 
         public decimal Price { get; set; }
     }
-
-    public class ResultProductsListSiteDTO
-    {
-        public List<ProductsListSiteDTO> Products { get; set; }
-
-        public int TotalRow { get; set; }
-    }
 }

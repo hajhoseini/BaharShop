@@ -25,14 +25,31 @@ namespace BaharShop.InfraStructure.Readers.Products
             return products;
         }
 
-        public List<Product> GetListProductsSite(int Page, out int totalRow)
+        public List<Product> GetListProductsSite(int page, out int totalRow)
         {
             var products = _dbContext.Product
                             .Include(p => p.ProductImages)
-                            .ToPaged(Page, 5, out totalRow)
+                            .ToPaged(page, 5, out totalRow)
                             .ToList();
 
             return products;
+        }
+
+        public async Task<Product> GetProductDetail(int id)
+        {
+            var product = _dbContext.Product
+                .Include(p => p.Category)
+                .ThenInclude(p => p.ParentCategory)
+                .Include(p => p.ProductImages)
+                .Include(p => p.ProductFeatures)
+                .Where(p => p.Id == id).FirstOrDefault();           
+
+            if (product == null)
+            {
+                throw new Exception("Product Not Found.....");
+            }
+
+            return product;
         }
     }
 }

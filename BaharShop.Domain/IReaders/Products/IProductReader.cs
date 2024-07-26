@@ -6,6 +6,8 @@ namespace BaharShop.Domain.IReaders.Products
     {
         List<Product> GetListProductsInAdminPanel(int currentPage, int pageSize, out int rowCount);
 
-        List<Product> GetListProductsSite(int Page, out int totalRow);
+        List<Product> GetListProductsSite(int page, out int totalRow);
+
+        Task<Product> GetProductDetail(int id); 
     }
 }

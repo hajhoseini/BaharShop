@@ -19,5 +19,12 @@ namespace BaharShop.WebMVC.Controllers
             var result = await _mediator.Send(query);
             return View(result.Data);
         }
+
+        public async Task<IActionResult> Detail(int id)
+        {
+            GetProductDetailQuery query = new GetProductDetailQuery { Id = id };
+            var result = await _mediator.Send(query);
+            return View(result.Data);
+        }
     }
 }

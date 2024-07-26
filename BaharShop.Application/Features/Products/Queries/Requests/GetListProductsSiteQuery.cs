@@ -7,5 +7,7 @@ namespace BaharShop.Application.Features.Products.Queries.Requests
     public class GetListProductsSiteQuery : IRequest<ResultDTO<ResultProductsListSiteDTO>>
     {
         public int CurrentPage { get; set; }
+
+        public int? CategoryId { get; set; }
     }
 }

@@ -1,0 +1,30 @@
+﻿@using BaharShop.Application.DTOs.MenuItems
+@model List<MenuItemDTO>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li id="nav-menu-item" class="menu-item nav-overlay">
+        <a href="#" class="current-link-menu">
+            @item.Name
+        </a>
+
+        @if (item.Children.Count() > 0)
+        {
+            <ul class="sub-menu is-mega-menu-small">
+
+                @foreach (var itemChild in item.Children)
+                {
+                    <li class="menu-mega-item menu-item-type-mega-menu item-small">
+                        <a href="~/product/index?CategoryId=@itemChild.CategotyId" class="mega-menu-link">
+                            @itemChild.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
+
+    </li>
+}

@@ -24,5 +24,15 @@ namespace BaharShop.InfraStructure.Readers.Products
 
             return products;
         }
+
+        public List<Product> GetListProductsSite(int Page, out int totalRow)
+        {
+            var products = _dbContext.Product
+                            .Include(p => p.ProductImages)
+                            .ToPaged(Page, 5, out totalRow)
+                            .ToList();
+
+            return products;
+        }
     }
 }

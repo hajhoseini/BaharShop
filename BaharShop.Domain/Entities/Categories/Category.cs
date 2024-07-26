@@ -12,6 +12,8 @@ namespace BaharShop.Domain.Entities.Categories
         [Description("دسته پدر")]
         public int? ParentId { get; set; }
 
+        public virtual Category ParentCategory { get; set; }
+
         [ForeignKey("ParentId")]
         [Description("دسته های فرزند")]
         public virtual List<Category> Children { get; set; }//

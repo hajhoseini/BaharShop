@@ -9,5 +9,7 @@ namespace BaharShop.Application.Features.Products.Queries.Requests
         public int CurrentPage { get; set; }
 
         public int? CategoryId { get; set; }
+
+        public string SearchKey { get; set; }
     }
 }

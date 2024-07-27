@@ -29,5 +29,15 @@ namespace BaharShop.InfraStructure.Readers.Categories
 
             return categories;
         }
+
+        public async Task<List<Category>> GetListMenuItems()
+        {
+            var categories = _dbContext.Category
+                .Include(p => p.Children)
+                .Where(p => p.ParentId == null)
+                .ToList();
+
+            return categories;
+        }
     }
 }

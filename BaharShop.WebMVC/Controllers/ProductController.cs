@@ -13,9 +13,9 @@ namespace BaharShop.WebMVC.Controllers
             _mediator = mediator;
         }
 
-        public async Task<IActionResult> Index(int? categoryId = null, int page = 1)
+        public async Task<IActionResult> Index(string searchKey, int? categoryId = null, int page = 1)
         {
-            GetListProductsSiteQuery query = new GetListProductsSiteQuery { CurrentPage = page, CategoryId = categoryId };
+            GetListProductsSiteQuery query = new GetListProductsSiteQuery { CurrentPage = page, CategoryId = categoryId, SearchKey = searchKey };
             var result = await _mediator.Send(query);
             return View(result.Data);
         }

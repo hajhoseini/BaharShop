@@ -25,10 +25,18 @@ namespace BaharShop.InfraStructure.Readers.Products
             return products;
         }
 
-        public List<Product> GetListProductsSite(int page, out int totalRow)
+        public List<Product> GetListProductsSite(int page, out int totalRow, int? categoryId)
         {
-            var products = _dbContext.Product
-                            .Include(p => p.ProductImages)
+            var productsQuery = _dbContext.Product
+                    .Include(p => p.ProductImages)
+                    .AsQueryable();
+
+            if (categoryId != null)
+            {
+                productsQuery = productsQuery.Where(p => p.CategoryId == categoryId).AsQueryable();
+            }
+
+            var products = productsQuery
                             .ToPaged(page, 5, out totalRow)
                             .ToList();
 

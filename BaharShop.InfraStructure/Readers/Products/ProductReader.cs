@@ -3,6 +3,7 @@ using BaharShop.Domain.IReaders.Products;
 using BaharShop.InfraStructure.DBContext;
 using Microsoft.EntityFrameworkCore;
 using BaharShop.Common;
+using BaharShop.Common.Enums;
 
 namespace BaharShop.InfraStructure.Readers.Products
 {
@@ -25,7 +26,7 @@ namespace BaharShop.InfraStructure.Readers.Products
             return products;
         }
 
-        public List<Product> GetListProductsSite(int page, out int totalRow, int? categoryId, string searchKey)
+        public List<Product> GetListProductsSite(int page, int pageSize, out int totalRow, int? categoryId, string searchKey, ProductOrderingEnum ordering)
         {
             var productsQuery = _dbContext.Product
                     .Include(p => p.ProductImages)
@@ -41,8 +42,30 @@ namespace BaharShop.InfraStructure.Readers.Products
                 productsQuery = productsQuery.Where(p => p.Title.Contains(searchKey) /*|| p.Brand.Contains(searchKey)*/).AsQueryable();
             }
 
+            switch (ordering)
+            {
+                case ProductOrderingEnum.NotOrder:
+                    productsQuery = productsQuery.OrderByDescending(p => p.Id).AsQueryable();
+                    break;
+                case ProductOrderingEnum.MostVisited:
+                    break;
+                case ProductOrderingEnum.BestSelling:
+                    break;
+                case ProductOrderingEnum.MostPopular:
+                    break;
+                case ProductOrderingEnum.TheNewest:
+                    productsQuery = productsQuery.OrderByDescending(p => p.Id).AsQueryable();
+                    break;
+                case ProductOrderingEnum.Cheapest:
+                    productsQuery = productsQuery.OrderBy(p => p.Price).AsQueryable();
+                    break;
+                case ProductOrderingEnum.TheMostExpensive:
+                    productsQuery = productsQuery.OrderByDescending(p => p.Price).AsQueryable();
+                    break;
+            }
+
             var products = productsQuery
-                            .ToPaged(page, 5, out totalRow)
+                            .ToPaged(page, pageSize, out totalRow)
                             .ToList();
 
             return products;
@@ -61,6 +84,10 @@ namespace BaharShop.InfraStructure.Readers.Products
             {
                 throw new Exception("Product Not Found.....");
             }
+
+            //این کد باید به محل مناسب جابجا شود
+            product.ViewCount++;
+            _dbContext.SaveChanges();
 
             return product;
         }

@@ -19,7 +19,7 @@ namespace BaharShop.Application.Features.Products.Queries.RequestHandlers
 		{
             int totalRow = 0;
 
-            var products = _productReader.GetListProductsSite(request.CurrentPage, out totalRow, request.CategoryId, request.SearchKey);
+            var products = _productReader.GetListProductsSite(request.CurrentPage, request.PageSize, out totalRow, request.CategoryId, request.SearchKey, request.Ordering);
 
             Random rd = new Random();
             return new ResultDTO<ResultProductsListSiteDTO>

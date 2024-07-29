@@ -25,7 +25,7 @@ namespace BaharShop.InfraStructure.Readers.Products
             return products;
         }
 
-        public List<Product> GetListProductsSite(int page, out int totalRow, int? categoryId, string searchKey)
+        public List<Product> GetListProductsSite(int page, int pageSize, out int totalRow, int? categoryId, string searchKey)
         {
             var productsQuery = _dbContext.Product
                     .Include(p => p.ProductImages)
@@ -42,7 +42,7 @@ namespace BaharShop.InfraStructure.Readers.Products
             }
 
             var products = productsQuery
-                            .ToPaged(page, 5, out totalRow)
+                            .ToPaged(page, pageSize, out totalRow)
                             .ToList();
 
             return products;

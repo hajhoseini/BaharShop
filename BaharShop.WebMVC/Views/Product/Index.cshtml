@@ -19,22 +19,22 @@
             <div class="nav-sort-tabs-res">
                 <ul class="nav sort-tabs-options" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="Most-visited-tab" data-toggle="tab" href="#Most-visited" role="tab" aria-controls="Most-visited" aria-selected="true">پربازدیدترین</a>
+                        <a class="nav-link active" href="~/product?searchKey=@Context.Request.Query["searchKey"]&categoryId=@Context.Request.Query["categoryId"]&ordering=MostVisited" role="tab" aria-controls="Most-visited" aria-selected="true">پربازدیدترین</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="Bestselling-tab" data-toggle="tab" href="#Bestselling" role="tab" aria-controls="Bestselling" aria-selected="false">پرفروش&zwnj;ترین&zwnj;</a>
+                        <a class="nav-link" href="~/product?searchKey=@Context.Request.Query["searchKey"]&categoryId=@Context.Request.Query["categoryId"]&ordering=BestSelling" role="tab" aria-controls="Bestselling" aria-selected="false">پرفروش&zwnj;ترین&zwnj;</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="Most-Popular-tab" data-toggle="tab" href="#Most-Popular" role="tab" aria-controls="Most-Popular" aria-selected="false">محبوب&zwnj;ترین</a>
+                        <a class="nav-link" href="~/product?searchKey=@Context.Request.Query["searchKey"]&categoryId=@Context.Request.Query["categoryId"]&ordering=MostPopular" role="tab" aria-controls="Most-Popular" aria-selected="false">محبوب&zwnj;ترین</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="newest-tab" data-toggle="tab" href="#newest" role="tab" aria-controls="newest" aria-selected="false">جدیدترین</a>
+                        <a class="nav-link" href="~/product?searchKey=@Context.Request.Query["searchKey"]&categoryId=@Context.Request.Query["categoryId"]&ordering=TheNewest" role="tab" aria-controls="newest" aria-selected="false">جدیدترین</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="cheapest-tab" data-toggle="tab" href="#cheapest" role="tab" aria-controls="cheapest" aria-selected="false">ارزان&zwnj;ترین</a>
+                        <a class="nav-link" href="~/product?searchKey=@Context.Request.Query["searchKey"]&categoryId=@Context.Request.Query["categoryId"]&ordering=Cheapest" role="tab" aria-controls="cheapest" aria-selected="false">ارزان&zwnj;ترین</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="most-expensive-tab" data-toggle="tab" href="#most-expensive" role="tab" aria-controls="most-expensive" aria-selected="false">گران&zwnj;ترین</a>
+                        <a class="nav-link" href="~/product?searchKey=@Context.Request.Query["searchKey"]&categoryId=@Context.Request.Query["categoryId"]&ordering=TheMostExpensive" role="tab" aria-controls="most-expensive" aria-selected="false">گران&zwnj;ترین</a>
                     </li>
                 </ul>
             </div>

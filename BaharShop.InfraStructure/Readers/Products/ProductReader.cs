@@ -25,7 +25,7 @@ namespace BaharShop.InfraStructure.Readers.Products
             return products;
         }
 
-        public List<Product> GetListProductsSite(int page, out int totalRow, int? categoryId)
+        public List<Product> GetListProductsSite(int page, out int totalRow, int? categoryId, string searchKey)
         {
             var productsQuery = _dbContext.Product
                     .Include(p => p.ProductImages)
@@ -33,7 +33,12 @@ namespace BaharShop.InfraStructure.Readers.Products
 
             if (categoryId != null)
             {
-                productsQuery = productsQuery.Where(p => p.CategoryId == categoryId).AsQueryable();
+                productsQuery = productsQuery.Where(p => p.CategoryId == categoryId || p.Category.ParentId == categoryId).AsQueryable();
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchKey))
+            {
+                productsQuery = productsQuery.Where(p => p.Title.Contains(searchKey) /*|| p.Brand.Contains(searchKey)*/).AsQueryable();
             }
 
             var products = productsQuery

@@ -85,6 +85,10 @@ namespace BaharShop.InfraStructure.Readers.Products
                 throw new Exception("Product Not Found.....");
             }
 
+            //این کد باید به محل مناسب جابجا شود
+            product.ViewCount++;
+            _dbContext.SaveChanges();
+
             return product;
         }
     }

@@ -5,7 +5,6 @@ using BaharShop.Application.Features.Products.Queries.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BaharShop.WebMVC.Areas.Admin.Controllers
 {
@@ -34,7 +33,7 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            GetListHieararchyCategoriesQuery query = new GetListHieararchyCategoriesQuery();
+            GetListLastLevelQuery query = new GetListLastLevelQuery();
             var categoryList = await _mediator.Send(query);
 
             ViewBag.Categories = new SelectList(categoryList, "Id", "Name");

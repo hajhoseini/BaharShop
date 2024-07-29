@@ -39,5 +39,16 @@ namespace BaharShop.InfraStructure.Readers.Categories
 
             return categories;
         }
+
+        public async Task<List<Category>> GetListLastLevel()
+        {
+            var categories = _dbContext.Category
+                .Include(p => p.Children)
+                .Where(p => p.Children.Count == 0)
+                .OrderBy(p => p.Name)
+                .ToList();
+
+            return categories;
+        }
     }
 }

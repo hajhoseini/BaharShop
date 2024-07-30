@@ -22,39 +22,55 @@
                         <div class="form">
                             <div class="form-body">
                                 <form method="post" class="row" enctype="multipart/form-data">
-
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
-
-                                            <label for="basicInput">موقعیت نمایش تصویر</label>
-                                            <select name="imageLocation" asp-items="@Html.GetEnumSelectList<ImageLocationEnum>()"></select>
-                                        </fieldset>
-                                    </div>
-
-
-                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
-                                        <fieldset class="form-group">
-
-                                            <label for="basicInput">آدرس لینک</label>
-                                            <input type="text" class="form-control" name="link">
+                                            <label for="imageLocation">موقعیت نمایش تصویر</label>
+                                            <select name="imageLocation" asp-items="Html.GetEnumSelectList<ImageLocationEnum>()" class="form-control">
+                                                <option value="">انتخاب کنید</option>
+                                            </select>
                                         </fieldset>
                                     </div>
 
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
+                                            <label for="link">آدرس لینک</label>
+                                            <input type="text" class="form-control" name="link" required>
+                                        </fieldset>
+                                    </div>
 
-                                            <label for="basicInput">تصویر</label>
-                                            <input type="file" name="file" />
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="file">تصویر</label>
+                                            <input type="file" class="form-control-file" name="file" required>
                                         </fieldset>
                                     </div>
 
                                     <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <br />
-                                            <button class="btn btn-success col-md-12">آپلود تصویر</button>
+                                            <button type="submit" class="btn btn-success col-md-12">آپلود تصویر</button>
                                         </fieldset>
                                     </div>
+
+                                    @if (ViewBag.Message != null)
+                                    {
+                                        <div class="col-md-12">
+                                            <div class="alert alert-success">
+                                                @ViewBag.Message
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @if (ViewBag.ErrorMessage != null)
+                                    {
+                                        <div class="col-md-12">
+                                            <div class="alert alert-danger">
+                                                @ViewBag.ErrorMessage
+                                            </div>
+                                        </div>
+                                    }
                                 </form>
+
                             </div>
                         </div>
                     </div>

@@ -29,7 +29,19 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(IFormFile file, string link, ImageLocationEnum imageLocation)
         {
-            CreateHomePageImageCommand command = new CreateHomePageImageCommand
+            if (file == null || file.Length == 0)
+            {
+                ViewBag.ErrorMessage = "لطفاً یک فایل تصویر انتخاب کنید.";
+                return View();
+            }
+
+            if (string.IsNullOrWhiteSpace(link))
+            {
+                ViewBag.ErrorMessage = "لطفاً آدرس لینک را وارد کنید.";
+                return View();
+            }
+
+            var command = new CreateHomePageImageCommand
             {
                 createHomePageImageDTO = new CreateHomePageImageDTO
                 {
@@ -38,7 +50,17 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
                     ImageLocation = imageLocation,
                 }
             };
+
             var result = await _mediator.Send(command);
+
+            if (result.IsSuccess)
+            {
+                ViewBag.Message = "تصویر با موفقیت آپلود شد.";
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "خطایی در آپلود تصویر رخ داد. لطفاً مجدداً تلاش کنید.";
+            }
 
             return View();
         }

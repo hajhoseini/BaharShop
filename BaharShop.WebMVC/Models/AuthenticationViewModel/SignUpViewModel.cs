@@ -1,4 +1,4 @@
-﻿namespace BaharShop.WebMVC.Models.ViewModels.AuthenticationViewModel
+﻿namespace BaharShop.WebMVC.Models.AuthenticationViewModel
 {
     public class SignUpViewModel
     {

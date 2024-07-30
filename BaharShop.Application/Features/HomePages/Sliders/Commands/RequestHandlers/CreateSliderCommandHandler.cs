@@ -22,11 +22,11 @@ namespace BaharShop.Application.Features.HomePages.Sliders.Commands.RequestHandl
         public async Task<ResultDTO> Handle(CreateSliderCommand request, CancellationToken cancellationToken)
         {
             Common.File file = new Common.File(_environment);
-            var resultUpload = file.UploadFile(request.SliderDTO.File);
+            var resultUpload = file.UploadFile(request.File);
 
             Slider slider = new Slider()
             {
-                Link = request.SliderDTO.Link,
+                Link = request.Link,
                 Src = resultUpload.FileNameAddress,
             };
 

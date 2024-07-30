@@ -28,7 +28,7 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(IFormFile file, string link)
         {
-            CreateSliderCommand command = new CreateSliderCommand { SliderDTO = new SliderDTO { File = file, Link = link} };
+            CreateSliderCommand command = new CreateSliderCommand { File = file, Link = link };
             var slider = await _mediator.Send(command);
             return View();
         }

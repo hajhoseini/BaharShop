@@ -31,7 +31,7 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
         {
             CreateHomePageImageCommand command = new CreateHomePageImageCommand
             {
-                homePageImageDTO = new HomePageImageDTO
+                createHomePageImageDTO = new CreateHomePageImageDTO
                 {
                     File = file,
                     Link = link,

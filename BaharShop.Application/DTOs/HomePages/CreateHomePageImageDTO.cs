@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace BaharShop.Application.DTOs.HomePages
 {
-    public class HomePageImageDTO
+    public class CreateHomePageImageDTO
     {
         public IFormFile File { get; set; }
 

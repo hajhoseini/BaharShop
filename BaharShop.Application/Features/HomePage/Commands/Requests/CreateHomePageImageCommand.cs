@@ -6,6 +6,6 @@ namespace BaharShop.Application.Features.HomePage.Commands.Requests
 {
     public class CreateHomePageImageCommand : IRequest<ResultDTO>
     {
-        public HomePageImageDTO homePageImageDTO { get; set; }
+        public CreateHomePageImageDTO createHomePageImageDTO { get; set; }
     }
 }

@@ -22,13 +22,13 @@ namespace BaharShop.Application.Features.HomePage.Commands.RequestHandlers
         public async Task<ResultDTO> Handle(CreateHomePageImageCommand request, CancellationToken cancellationToken)
         {
             Common.File file = new Common.File(_environment);
-            var resultUpload = file.UploadFile(request.homePageImageDTO.File);
+            var resultUpload = file.UploadFile(request.createHomePageImageDTO.File);
 
             HomePageImage homePageImage = new HomePageImage()
             {
-                Link = request.homePageImageDTO.Link,
+                Link = request.createHomePageImageDTO.Link,
                 Src = resultUpload.FileNameAddress,
-                ImageLocation = request.homePageImageDTO.ImageLocation
+                ImageLocation = request.createHomePageImageDTO.ImageLocation
             };
 
             var result = await _genericRepository.Create(homePageImage);

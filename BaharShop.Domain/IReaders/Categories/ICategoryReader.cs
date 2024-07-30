@@ -9,5 +9,7 @@ namespace BaharShop.Domain.IReaders.Categories
         Task<List<Category>> GetListByParentId(int? parentId);
 
         Task<List<Category>> GetListMenuItems();
+
+        Task<List<Category>> GetListLastLevel();
     }
 }

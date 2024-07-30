@@ -3,7 +3,7 @@ using BaharShop.Application.DTOs.Users;
 using BaharShop.Application.Features.Users.Commands.Requests;
 using BaharShop.Application.Features.Users.Queries.Requests;
 using BaharShop.Common;
-using BaharShop.WebMVC.Models.AuthenticationViewModel;
+using BaharShop.WebMVC.Models.ViewModels.AuthenticationViewModel;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;

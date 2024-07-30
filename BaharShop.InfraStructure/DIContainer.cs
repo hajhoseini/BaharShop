@@ -4,7 +4,6 @@ using BaharShop.Domain.IReaders.Categories;
 using BaharShop.Domain.IReaders.Cities;
 using BaharShop.Domain.IReaders.Comments;
 using BaharShop.Domain.IReaders.Customers;
-using BaharShop.Domain.IReaders.HomePages.Sliders;
 using BaharShop.Domain.IReaders.OrderItems;
 using BaharShop.Domain.IReaders.Orders;
 using BaharShop.Domain.IReaders.Products;
@@ -18,7 +17,6 @@ using BaharShop.Domain.IRepositories.Categories;
 using BaharShop.Domain.IRepositories.Cities;
 using BaharShop.Domain.IRepositories.Comments;
 using BaharShop.Domain.IRepositories.Customers;
-using BaharShop.Domain.IRepositories.HomePages.Sliders;
 using BaharShop.Domain.IRepositories.OrderItems;
 using BaharShop.Domain.IRepositories.Orders;
 using BaharShop.Domain.IRepositories.Products;
@@ -32,7 +30,6 @@ using BaharShop.InfraStructure.Readers.Categories;
 using BaharShop.InfraStructure.Readers.Cities;
 using BaharShop.InfraStructure.Readers.Comments;
 using BaharShop.InfraStructure.Readers.Customers;
-using BaharShop.InfraStructure.Readers.HomePages.Sliders;
 using BaharShop.InfraStructure.Readers.OrderItems;
 using BaharShop.InfraStructure.Readers.Orders;
 using BaharShop.InfraStructure.Readers.Products;
@@ -46,7 +43,6 @@ using BaharShop.InfraStructure.Repositories.Categories;
 using BaharShop.InfraStructure.Repositories.Cities;
 using BaharShop.InfraStructure.Repositories.Comments;
 using BaharShop.InfraStructure.Repositories.Customers;
-using BaharShop.InfraStructure.Repositories.HomePages.Sliders;
 using BaharShop.InfraStructure.Repositories.OrderItems;
 using BaharShop.InfraStructure.Repositories.Orders;
 using BaharShop.InfraStructure.Repositories.Products;
@@ -76,7 +72,6 @@ namespace BaharShop.InfraStructure
             service.AddScoped<IUserRepository, UserRepository>();
             service.AddScoped<IRoleRepository, RoleRepository>();
             service.AddScoped<IUserRoleRepository, UserRoleRepository>();
-            service.AddScoped<ISliderRepository, SliderRepository>();
 
             service.AddScoped(typeof(IGenericReader<>), typeof(GenericReader<>));
 
@@ -92,7 +87,6 @@ namespace BaharShop.InfraStructure
             service.AddScoped<IUserReader, UserReader>();
             service.AddScoped<IRoleReader, RoleReader>();
             service.AddScoped<IUserRoleReader, UserRoleReader>();
-            service.AddScoped<ISliderReader, SliderReader>();
 
             return service;
         }

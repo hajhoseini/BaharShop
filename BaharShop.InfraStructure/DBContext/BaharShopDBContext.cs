@@ -4,7 +4,6 @@ using BaharShop.Domain.Entities.Categories;
 using BaharShop.Domain.Entities.Cities;
 using BaharShop.Domain.Entities.Comments;
 using BaharShop.Domain.Entities.Customers;
-using BaharShop.Domain.Entities.HomePages.Sliders;
 using BaharShop.Domain.Entities.OrderItems;
 using BaharShop.Domain.Entities.Orders;
 using BaharShop.Domain.Entities.Products;
@@ -51,7 +50,5 @@ namespace BaharShop.InfraStructure.DBContext
         public DbSet<ProductImage> ProductImage { get; set; }
 
         public DbSet<ProductFeature> ProductFeature { get; set; }
-
-        public DbSet<Slider> Slider { get; set; }
     }
 }

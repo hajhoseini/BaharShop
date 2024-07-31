@@ -20,8 +20,6 @@ namespace BaharShop.InfraStructure.Repositories.Users
 
             try
             {
-                entity.InsertDate = DateTime.Now;
-
                 await _dbContext.AddAsync(entity);
                 await _dbContext.SaveChangesAsync(CancellationToken.None);
 

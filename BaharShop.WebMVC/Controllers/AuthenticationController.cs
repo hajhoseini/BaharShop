@@ -66,12 +66,17 @@ namespace BaharShop.WebMVC.Controllers
                 };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                identity.AddClaims(claims);
+
                 var principal = new ClaimsPrincipal(identity);
                 var properties = new AuthenticationProperties()
                 {
-                    IsPersistent = true
+                    ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
+                    IsPersistent = false,
+                    AllowRefresh = false
                 };
 
+                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 HttpContext.SignInAsync(principal, properties);
             }
 

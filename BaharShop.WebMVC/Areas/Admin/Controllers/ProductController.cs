@@ -68,5 +68,13 @@ namespace BaharShop.WebMVC.Areas.Admin.Controllers
 
             return View(result);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int productId)
+        {
+            DeleteProductCommand command = new DeleteProductCommand() { Id = productId };
+            var result = await _mediator.Send(command);
+            return Json(result);
+        }
     }
 }

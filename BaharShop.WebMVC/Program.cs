@@ -1,6 +1,7 @@
 using BaharShop.Application;
 using BaharShop.InfraStructure;
 using BaharShop.InfraStructure.DBContext;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,16 @@ builder.Services.AddDbContext<BaharShopDBContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.InfraStructureServiceCollections();
 builder.Services.ApplicationServiceCollections();
+
+#region Authentication
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option =>
+    {
+        option.LoginPath = "/Authentication/SignIn";
+        option.LogoutPath = "/Authentication/SignOut";
+        option.ExpireTimeSpan = TimeSpan.FromDays(10);
+    });
+#endregion
 
 var app = builder.Build();
 
@@ -28,6 +39,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

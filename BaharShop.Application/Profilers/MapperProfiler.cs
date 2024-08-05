@@ -4,6 +4,7 @@ using BaharShop.Application.DTOs.Categories;
 using BaharShop.Application.DTOs.Cities;
 using BaharShop.Application.DTOs.Comments;
 using BaharShop.Application.DTOs.Customers;
+using BaharShop.Application.DTOs.HomePages;
 using BaharShop.Application.DTOs.OrderItems;
 using BaharShop.Application.DTOs.Orders;
 using BaharShop.Application.DTOs.Products;
@@ -16,6 +17,7 @@ using BaharShop.Domain.Entities.Categories;
 using BaharShop.Domain.Entities.Cities;
 using BaharShop.Domain.Entities.Comments;
 using BaharShop.Domain.Entities.Customers;
+using BaharShop.Domain.Entities.HomePage;
 using BaharShop.Domain.Entities.OrderItems;
 using BaharShop.Domain.Entities.Orders;
 using BaharShop.Domain.Entities.Products;
@@ -42,6 +44,7 @@ namespace BaharShop.Application.Profilers
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<Role, RoleDTO>().ReverseMap();
             CreateMap<UserRole, UserRoleDTO>().ReverseMap();
+            CreateMap<HomePageImage, HomePageImageDTO>().ReverseMap();
         }
     }
 }

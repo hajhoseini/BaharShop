@@ -1,5 +1,7 @@
 using BaharShop.Common.Enums;
 using BaharShop.Domain.Entities.Addresses;
+using BaharShop.Domain.Entities.CartItems;
+using BaharShop.Domain.Entities.Carts;
 using BaharShop.Domain.Entities.Categories;
 using BaharShop.Domain.Entities.Cities;
 using BaharShop.Domain.Entities.Comments;
@@ -53,5 +55,9 @@ namespace BaharShop.InfraStructure.DBContext
         public DbSet<ProductFeature> ProductFeature { get; set; }
 
         public DbSet<HomePageImage> HomePageImage { get; set; }
+
+        public DbSet<Cart> Cart { get; set; }
+
+        public DbSet<CartItem> CartItem { get; set; }
     }
 }

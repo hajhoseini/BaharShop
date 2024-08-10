@@ -13,7 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaharShop.InfraStructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaharShop.WebAPI", "BaharShop.WebAPI\BaharShop.WebAPI.csproj", "{8A4A129F-2D95-4523-A4CB-5839F417C48A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaharShop.WebMVC", "BaharShop.WebMVC\BaharShop.WebMVC.csproj", "{4DA06E7F-A813-4C20-912D-42B759C3ED80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaharShop.WebMVC", "BaharShop.WebMVC\BaharShop.WebMVC.csproj", "{4DA06E7F-A813-4C20-912D-42B759C3ED80}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{478991D1-87DD-4F79-9D0D-21ACB02CA0C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{187A3996-36D6-4960-8383-80CE9DC630B4}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\a.hoseini\Desktop\data.txt = C:\Users\a.hoseini\Desktop\data.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +55,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{187A3996-36D6-4960-8383-80CE9DC630B4} = {478991D1-87DD-4F79-9D0D-21ACB02CA0C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FBBFEF43-16CD-44BB-8707-3277895513A6}

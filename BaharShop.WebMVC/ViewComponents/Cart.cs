@@ -14,10 +14,10 @@ namespace BaharShop.WebMVC.ViewComponents
             _cookiesManeger = new CookiesManeger();
         }
 
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             var userId = ClaimUtility.GetUserId(HttpContext.User);
-            var myCart = _cartServices.GetMyCart(_cookiesManeger.GetBrowserId(HttpContext), userId).GetAwaiter().GetResult();
+            var myCart = await _cartServices.GetMyCart(_cookiesManeger.GetBrowserId(HttpContext), userId);
             return View(viewName: "Cart", myCart.Data);
         }
     }

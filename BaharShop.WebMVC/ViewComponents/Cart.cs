@@ -16,7 +16,8 @@ namespace BaharShop.WebMVC.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var myCart = _cartServices.GetMyCart(_cookiesManeger.GetBrowserId(HttpContext)).GetAwaiter().GetResult();
+            var userId = ClaimUtility.GetUserId(HttpContext.User);
+            var myCart = _cartServices.GetMyCart(_cookiesManeger.GetBrowserId(HttpContext), userId).GetAwaiter().GetResult();
             return View(viewName: "Cart", myCart.Data);
         }
     }

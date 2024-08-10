@@ -17,7 +17,8 @@ namespace BaharShop.WebMVC.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var myCart = await _cartServices.GetMyCart(_cookiesManeger.GetBrowserId(HttpContext));
+            var userId = ClaimUtility.GetUserId(User);
+            var myCart = await _cartServices.GetMyCart(_cookiesManeger.GetBrowserId(HttpContext), userId);
 
             return View(myCart.Data);
         }

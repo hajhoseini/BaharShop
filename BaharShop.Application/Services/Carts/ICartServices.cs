@@ -5,7 +5,7 @@ namespace BaharShop.Application.Services.Carts
 {
     public interface ICartServices
     {
-        Task<ResultDTO<CartDTO>> GetMyCart(Guid browserId);
+        Task<ResultDTO<CartDTO>> GetMyCart(Guid browserId, int? userId);
 
         Task<ResultDTO> AddToCart(int productId, Guid browserId);
 

@@ -4,6 +4,7 @@ using BaharShop.Common;
 using BaharShop.Domain.Entities.CartItems;
 using BaharShop.Domain.Entities.Carts;
 using BaharShop.Domain.Entities.Products;
+using BaharShop.Domain.Entities.Users;
 using BaharShop.Domain.IReaders;
 using BaharShop.Domain.IReaders.Carts;
 using BaharShop.Domain.IRepositories;
@@ -15,6 +16,7 @@ namespace BaharShop.Application.Services.Carts
         private readonly ICartReader _cartReader;
         private readonly IGenericReader<CartItem> _cartItemReader;
         private readonly IGenericReader<Product> _productReader;
+        private readonly IGenericReader<User> _userReader;
 
         private readonly IGenericRepository<Cart> _cartRepository;
         private readonly IGenericRepository<CartItem> _cartItemRepository;
@@ -23,16 +25,18 @@ namespace BaharShop.Application.Services.Carts
                             IGenericReader<CartItem> cartItemReader,
                             IGenericReader<Product> productReader,
                             IGenericRepository<Cart> cartRepository,
-                            IGenericRepository<CartItem> cartItemRepository)
+                            IGenericRepository<CartItem> cartItemRepository,
+                            IGenericReader<User> userReader)
         {
             _cartReader = cartReader;
             _cartItemReader = cartItemReader;
             _productReader = productReader;
             _cartRepository = cartRepository;
             _cartItemRepository = cartItemRepository;
+            _userReader = userReader;
         }
 
-        public async Task<ResultDTO<CartDTO>> GetMyCart(Guid browserId)
+        public async Task<ResultDTO<CartDTO>> GetMyCart(Guid browserId, int? userId)
         {
             try
             {
@@ -48,6 +52,14 @@ namespace BaharShop.Application.Services.Carts
                         },
                         IsSuccess = false,
                     };
+                }
+
+                if (userId != null)
+                {
+                    var u = userId ?? default(int);
+                    var user = await _userReader.GetById(u);
+                    cart.User = user;
+                    await _cartRepository.Update(cart);
                 }
 
                 return new ResultDTO<CartDTO>()

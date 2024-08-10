@@ -4,7 +4,7 @@ using BaharShop.Common;
 using BaharShop.Domain.Entities.CartItems;
 using BaharShop.Domain.Entities.Carts;
 using BaharShop.Domain.Entities.Products;
-using BaharShop.Domain.Entities.Users;
+//using BaharShop.Domain.Entities.Users;
 using BaharShop.Domain.IReaders;
 using BaharShop.Domain.IReaders.Carts;
 using BaharShop.Domain.IRepositories;
@@ -16,7 +16,7 @@ namespace BaharShop.Application.Services.Carts
         private readonly ICartReader _cartReader;
         private readonly IGenericReader<CartItem> _cartItemReader;
         private readonly IGenericReader<Product> _productReader;
-        private readonly IGenericReader<User> _userReader;
+        //private readonly IGenericReader<User> _userReader;
 
         private readonly IGenericRepository<Cart> _cartRepository;
         private readonly IGenericRepository<CartItem> _cartItemRepository;
@@ -24,14 +24,14 @@ namespace BaharShop.Application.Services.Carts
         public CartServices(ICartReader cartReader,
                             IGenericReader<CartItem> cartItemReader,
                             IGenericReader<Product> productReader,
-                            IGenericReader<User> userReader,
+                            //IGenericReader<User> userReader,
                             IGenericRepository<Cart> cartRepository,
                             IGenericRepository<CartItem> cartItemRepository)
         {
             _cartReader = cartReader;
             _cartItemReader = cartItemReader;
             _productReader = productReader;
-            _userReader = userReader;
+            //_userReader = userReader;
             _cartRepository = cartRepository;
             _cartItemRepository = cartItemRepository;
         }
@@ -42,38 +42,15 @@ namespace BaharShop.Application.Services.Carts
             {
                 var cart = await _cartReader.GetMyCart(browserId);
 
-                if (cart == null)
-                {
-                    return new ResultDTO<CartDTO>()
-                    {
-                        Data = new CartDTO()
-                        {
-                            CartItems = new List<CartItemDTO>()
-                        },
-                        IsSuccess = false,
-                    };
-                }
-
-                if (userId != null)
-                {
-                    var user = await _userReader.GetById(userId);
-                    cart.User = user;
-                    await _cartRepository.Update(cart);
-                }
-
                 return new ResultDTO<CartDTO>()
                 {
                     Data = new CartDTO()
                     {
-                        ProductCount = cart.CartItems.Count(),
-                        SumAmount = cart.CartItems.Sum(p => p.Price * p.Count),
                         CartItems = cart.CartItems.Select(p => new CartItemDTO
                         {
                             Count = p.Count,
                             Price = p.Price,
-                            Product = p.Product.Title,
-                            Id = p.Id,
-                            Images = p.Product?.ProductImages?.FirstOrDefault()?.Src ?? "",
+                            Product = p.Product.Title
                         }).ToList(),
                     },
                     IsSuccess = true,

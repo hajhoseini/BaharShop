@@ -1,5 +1,7 @@
 ﻿using BaharShop.Domain.IReaders;
 using BaharShop.Domain.IReaders.Addresses;
+using BaharShop.Domain.IReaders.CartItems;
+using BaharShop.Domain.IReaders.Carts;
 using BaharShop.Domain.IReaders.Categories;
 using BaharShop.Domain.IReaders.Cities;
 using BaharShop.Domain.IReaders.Comments;
@@ -14,6 +16,8 @@ using BaharShop.Domain.IReaders.UserRoles;
 using BaharShop.Domain.IReaders.Users;
 using BaharShop.Domain.IRepositories;
 using BaharShop.Domain.IRepositories.Addresses;
+using BaharShop.Domain.IRepositories.CartItems;
+using BaharShop.Domain.IRepositories.Carts;
 using BaharShop.Domain.IRepositories.Categories;
 using BaharShop.Domain.IRepositories.Cities;
 using BaharShop.Domain.IRepositories.Comments;
@@ -28,6 +32,8 @@ using BaharShop.Domain.IRepositories.UserRoles;
 using BaharShop.Domain.IRepositories.Users;
 using BaharShop.InfraStructure.Readers;
 using BaharShop.InfraStructure.Readers.Addresss;
+using BaharShop.InfraStructure.Readers.CartItems;
+using BaharShop.InfraStructure.Readers.Carts;
 using BaharShop.InfraStructure.Readers.Categories;
 using BaharShop.InfraStructure.Readers.Cities;
 using BaharShop.InfraStructure.Readers.Comments;
@@ -42,6 +48,8 @@ using BaharShop.InfraStructure.Readers.UserRoles;
 using BaharShop.InfraStructure.Readers.Users;
 using BaharShop.InfraStructure.Repositories;
 using BaharShop.InfraStructure.Repositories.Addresses;
+using BaharShop.InfraStructure.Repositories.CartItems;
+using BaharShop.InfraStructure.Repositories.Carts;
 using BaharShop.InfraStructure.Repositories.Categories;
 using BaharShop.InfraStructure.Repositories.Cities;
 using BaharShop.InfraStructure.Repositories.Comments;
@@ -77,6 +85,8 @@ namespace BaharShop.InfraStructure
             service.AddScoped<IRoleRepository, RoleRepository>();
             service.AddScoped<IUserRoleRepository, UserRoleRepository>();
             service.AddScoped<IHomePageImageRepository, HomePageImageRepository>();
+            service.AddScoped<ICartRepository, CartRepository>();
+            service.AddScoped<ICartItemRepository, CartItemRepository>();
 
             service.AddScoped(typeof(IGenericReader<>), typeof(GenericReader<>));
 
@@ -93,6 +103,8 @@ namespace BaharShop.InfraStructure
             service.AddScoped<IRoleReader, RoleReader>();
             service.AddScoped<IUserRoleReader, UserRoleReader>();
             service.AddScoped<IHomePageImageReader, HomePageImageReader>();
+            service.AddScoped<ICartReader, CartReader>();
+            service.AddScoped<ICartItemReader, CartItemReader>();
 
             return service;
         }

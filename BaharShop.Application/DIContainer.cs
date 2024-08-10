@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BaharShop.Application.Services.Carts;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace BaharShop.Application
@@ -9,6 +10,7 @@ namespace BaharShop.Application
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddScoped<ICartServices, CartServices>();
 
             return services;
         }

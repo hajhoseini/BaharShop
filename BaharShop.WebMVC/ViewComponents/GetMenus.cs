@@ -13,10 +13,10 @@ namespace BaharShop.WebMVC.ViewComponents
             _mediator = mediator;
         }
 
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             GetListMenuItemsQuery query = new GetListMenuItemsQuery();
-            var result = _mediator.Send(query).GetAwaiter().GetResult();
+            var result = await _mediator.Send(query);
 
             return View(viewName: "GetMenus", result.Data);
         }

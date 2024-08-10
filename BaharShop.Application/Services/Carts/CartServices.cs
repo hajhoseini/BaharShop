@@ -7,7 +7,6 @@ using BaharShop.Domain.Entities.Products;
 using BaharShop.Domain.IReaders;
 using BaharShop.Domain.IReaders.Carts;
 using BaharShop.Domain.IRepositories;
-using BaharShop.Domain.IRepositories.Carts;
 
 namespace BaharShop.Application.Services.Carts
 {

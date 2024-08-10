@@ -30,7 +30,6 @@
             }
         }
 
-
         private CookieOptions getCookieOptions(HttpContext context)
         {
             return new CookieOptions
@@ -40,6 +39,22 @@
                 Secure = context.Request.IsHttps,
                 Expires = DateTime.Now.AddDays(100),
             };
+        }
+
+        public Guid GetBrowserId(HttpContext context)
+        {
+            string browserId = GetValue(context, "BowserId");
+            if (browserId == null)
+            {
+                string value = Guid.NewGuid().ToString();
+                Add(context, "BowserId", value);
+                browserId = value;
+            }
+
+            Guid guidBowser;
+            Guid.TryParse(browserId, out guidBowser);
+
+            return guidBowser;
         }
     }
 }

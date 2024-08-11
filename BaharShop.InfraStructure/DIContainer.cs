@@ -22,6 +22,7 @@ using BaharShop.Domain.IRepositories.Categories;
 using BaharShop.Domain.IRepositories.Cities;
 using BaharShop.Domain.IRepositories.Comments;
 using BaharShop.Domain.IRepositories.Customers;
+using BaharShop.Domain.IRepositories.Finances;
 using BaharShop.Domain.IRepositories.HomePage;
 using BaharShop.Domain.IRepositories.OrderItems;
 using BaharShop.Domain.IRepositories.Orders;
@@ -54,6 +55,7 @@ using BaharShop.InfraStructure.Repositories.Categories;
 using BaharShop.InfraStructure.Repositories.Cities;
 using BaharShop.InfraStructure.Repositories.Comments;
 using BaharShop.InfraStructure.Repositories.Customers;
+using BaharShop.InfraStructure.Repositories.Finances;
 using BaharShop.InfraStructure.Repositories.HomePage;
 using BaharShop.InfraStructure.Repositories.OrderItems;
 using BaharShop.InfraStructure.Repositories.Orders;
@@ -87,6 +89,7 @@ namespace BaharShop.InfraStructure
             service.AddScoped<IHomePageImageRepository, HomePageImageRepository>();
             service.AddScoped<ICartRepository, CartRepository>();
             service.AddScoped<ICartItemRepository, CartItemRepository>();
+            service.AddScoped<IRequestPayRepository, RequestPayRepository>();
 
             service.AddScoped(typeof(IGenericReader<>), typeof(GenericReader<>));
 

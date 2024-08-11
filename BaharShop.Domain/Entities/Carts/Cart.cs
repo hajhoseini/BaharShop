@@ -8,7 +8,7 @@ namespace BaharShop.Domain.Entities.Carts
     {
         public virtual User User { get; set; }
 
-        public long? UserId { get; set; }
+        public int? UserId { get; set; }
 
         public Guid BrowserId { get; set; }
 

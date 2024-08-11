@@ -115,12 +115,12 @@ namespace BaharShop.Application.Services.Carts
             {
                 CartItem newCartItem = new CartItem()
                 {
-                    Cart = cart,
+                    CartId = cart.Id,
                     Count = 1,
                     Price = product.Price,
                     Product = product,
                 };
-                await _cartItemRepository.Create(cartItem);
+                await _cartItemRepository.Create(newCartItem);
             }
 
             return new ResultDTO()

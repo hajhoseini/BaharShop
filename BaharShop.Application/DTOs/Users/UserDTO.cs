@@ -12,6 +12,6 @@ namespace BaharShop.Application.DTOs.Users
 
         public bool IsActive { get; set; }
 
-        public string Roles { get; set; }
+        public List<string> Roles { get; set; }
     }
 }

@@ -102,8 +102,11 @@ namespace BaharShop.WebMVC.Controllers
                     new Claim(ClaimTypes.NameIdentifier,SignInResult.Data.Id.ToString()),
                     new Claim(ClaimTypes.Email, SignInResult.Data.Email),
                     new Claim(ClaimTypes.Name, SignInResult.Data.FullName),
-                    new Claim(ClaimTypes.Role, SignInResult.Data.Roles),
                 };
+                foreach (var item in SignInResult.Data.Roles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, item));
+                }
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);

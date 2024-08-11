@@ -2,10 +2,12 @@
 using BaharShop.Application.Services.Carts;
 using BaharShop.WebMVC.Utilities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaharShop.WebMVC.Controllers
 {
+    [Authorize("Customer")]
     public class PayController : Controller
     {
         private readonly IMediator _mediator;

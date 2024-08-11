@@ -23,9 +23,9 @@ namespace BaharShop.WebMVC.Controllers
             return View(myCart.Data);
         }
 
-        public IActionResult AddToCart(int productId)
+        public async Task<IActionResult> AddToCart(int productId)
         {
-            var result = _cartServices.AddToCart(productId, _cookiesManeger.GetBrowserId(HttpContext));
+            var result = await _cartServices.AddToCart(productId, _cookiesManeger.GetBrowserId(HttpContext));
 
             return RedirectToAction("Index");
         }

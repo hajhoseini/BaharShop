@@ -8,7 +8,7 @@ namespace BaharShop.Domain.Entities.CartItems
     {
         public virtual Product Product { get; set; }
 
-        public long ProductId { get; set; }
+        public int ProductId { get; set; }
 
         public int Count { get; set; }
 
@@ -16,6 +16,6 @@ namespace BaharShop.Domain.Entities.CartItems
 
         public virtual Cart Cart { get; set; }
 
-        public long CartId { get; set; }
+        public int CartId { get; set; }
     }
 }

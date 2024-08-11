@@ -65,12 +65,12 @@ namespace BaharShop.Application.Features.Users.Queries.RequestHandlers
                 };
             }
 
-            var roles = "";
+            List<string> roles = new List<string>();
             if (user.UserRoles != null)
             {
                 foreach (var item in user.UserRoles)
                 {
-                    roles += $"{item.Role.Name}";
+                    roles.Add(item.Role.Name);
                 }
             }
 

@@ -6,6 +6,7 @@ using BaharShop.Domain.Entities.Categories;
 using BaharShop.Domain.Entities.Cities;
 using BaharShop.Domain.Entities.Comments;
 using BaharShop.Domain.Entities.Customers;
+using BaharShop.Domain.Entities.Finances;
 using BaharShop.Domain.Entities.HomePage;
 using BaharShop.Domain.Entities.OrderItems;
 using BaharShop.Domain.Entities.Orders;
@@ -59,5 +60,7 @@ namespace BaharShop.InfraStructure.DBContext
         public DbSet<Cart> Cart { get; set; }
 
         public DbSet<CartItem> CartItem { get; set; }
+
+        public DbSet<RequestPay> RequestPay { get; set; }
     }
 }

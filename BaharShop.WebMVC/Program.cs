@@ -1,4 +1,5 @@
 using BaharShop.Application;
+using BaharShop.Common.Enums;
 using BaharShop.InfraStructure;
 using BaharShop.InfraStructure.DBContext;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -13,6 +14,13 @@ builder.Services.AddDbContext<BaharShopDBContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.InfraStructureServiceCollections();
 builder.Services.ApplicationServiceCollections();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(UserRoles.Admin, policy => policy.RequireRole(UserRoles.Admin));
+    options.AddPolicy(UserRoles.Customer, policy => policy.RequireRole(UserRoles.Customer));
+    options.AddPolicy(UserRoles.Operator, policy => policy.RequireRole(UserRoles.Operator));
+});
 
 #region Authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

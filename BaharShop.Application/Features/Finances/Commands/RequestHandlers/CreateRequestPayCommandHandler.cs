@@ -38,7 +38,11 @@ namespace BaharShop.Application.Features.Finances.Commands.RequestHandlers
             {
                 Data = new ResultRequestPayDTO
                 {
-                    Guid = requestPay.Guid
+                    Guid = requestPay.Guid,
+                    Amount = requestPay.Amount,
+                    Email = user.Email,
+                    //MobileNumber ??
+                    RequestPayId = requestPay.Id
                 },
                 IsSuccess = true
             };

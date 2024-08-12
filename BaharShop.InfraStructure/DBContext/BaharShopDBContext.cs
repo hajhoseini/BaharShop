@@ -36,6 +36,15 @@ namespace BaharShop.InfraStructure.DBContext
             modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
 
             modelBuilder.Entity<User>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<Role>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<Category>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<Product>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<ProductFeature>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<ProductImage>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<HomePageImage>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<Cart>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<CartItem>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<RequestPay>().HasQueryFilter(p => !p.IsRemoved);
         }
 
         public DbSet<Address> Address { get; set; }

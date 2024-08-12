@@ -6,6 +6,7 @@ using BaharShop.Domain.IReaders.Categories;
 using BaharShop.Domain.IReaders.Cities;
 using BaharShop.Domain.IReaders.Comments;
 using BaharShop.Domain.IReaders.Customers;
+using BaharShop.Domain.IReaders.Finances;
 using BaharShop.Domain.IReaders.HomePage;
 using BaharShop.Domain.IReaders.OrderItems;
 using BaharShop.Domain.IReaders.Orders;
@@ -39,6 +40,7 @@ using BaharShop.InfraStructure.Readers.Categories;
 using BaharShop.InfraStructure.Readers.Cities;
 using BaharShop.InfraStructure.Readers.Comments;
 using BaharShop.InfraStructure.Readers.Customers;
+using BaharShop.InfraStructure.Readers.Finances;
 using BaharShop.InfraStructure.Readers.HomePage;
 using BaharShop.InfraStructure.Readers.OrderItems;
 using BaharShop.InfraStructure.Readers.Orders;
@@ -108,6 +110,7 @@ namespace BaharShop.InfraStructure
             service.AddScoped<IHomePageImageReader, HomePageImageReader>();
             service.AddScoped<ICartReader, CartReader>();
             service.AddScoped<ICartItemReader, CartItemReader>();
+            service.AddScoped<IRequestPayReader, RequestPayReader>();
 
             return service;
         }

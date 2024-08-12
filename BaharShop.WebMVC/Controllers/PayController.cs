@@ -1,9 +1,13 @@
 ﻿using BaharShop.Application.Features.Finances.Commands.Requests;
+using BaharShop.Application.Features.Finances.Queries.Requests;
 using BaharShop.Application.Services.Carts;
+//using BaharShop.Domain.Entities.Finances;
 using BaharShop.WebMVC.Utilities;
+using Dto.Payment;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ZarinPal.Class;
 
 namespace BaharShop.WebMVC.Controllers
 {
@@ -13,12 +17,20 @@ namespace BaharShop.WebMVC.Controllers
         private readonly IMediator _mediator;
         private readonly ICartServices _cartServices;
         private readonly CookiesManeger _cookiesManeger;
+        private readonly Payment _payment;
+        //private readonly Authority _authority;
+        //private readonly Transactions _transactions;
 
         public PayController(IMediator mediator, ICartServices cartServices)
         {
             _mediator = mediator;
             _cartServices = cartServices;
             _cookiesManeger = new CookiesManeger();
+
+            var expose = new Expose();
+            _payment = expose.CreatePayment();
+            //_authority = expose.CreateAuthority();
+            //_transactions = expose.CreateTransactions();
         }
 
         public async Task<IActionResult> Index()
@@ -34,11 +46,52 @@ namespace BaharShop.WebMVC.Controllers
                     Amount = myCart.Data.SumAmount
                 };
 
-                var result = await _mediator.Send(command);
+                var requestPay = await _mediator.Send(command);
+
+                //Send to payment
+                var result = await _payment.Request(
+                                                new DtoRequest()
+                                                {
+                                                    Mobile = requestPay.Data.MobileNumber,
+                                                    CallbackUrl = $"https://localhost:44376/Pay/Verify?guid={requestPay.Data.Guid}",
+                                                    Description = "پرداخت فاکتور شماره:" + requestPay.Data.RequestPayId,
+                                                    Email = requestPay.Data.Email,
+                                                    Amount = Decimal.ToInt32(requestPay.Data.Amount),
+                                                    MerchantId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+                                                }
+                                                , ZarinPal.Class.Payment.Mode.sandbox);//sandbox for test
+
+                return Redirect($"https://sandbox.zarinpal.com/pg/StartPay/{result.Authority}");
             }
             else
             {
                 return RedirectToAction("Index", "Cart");
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> Verify(Guid guid, string authority, string status)
+        {
+            GetRequestPayQuery query = new GetRequestPayQuery { Guid = guid };
+            var requestPay = await _mediator.Send(query);
+
+            var verification = await _payment.Verification(
+                                                    new DtoVerification
+                                                    {
+                                                        Amount = Decimal.ToInt32(requestPay.Data.Amount),
+                                                        MerchantId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+                                                        Authority = authority
+                                                    }
+                                                    , Payment.Mode.sandbox);
+
+            if (verification.Status == 100)
+            {
+
+            }
+            else
+            {
+
             }
 
             return View();

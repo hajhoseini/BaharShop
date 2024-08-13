@@ -25,8 +25,10 @@ namespace BaharShop.Application.Features.Finances.Queries.RequestHandlers
                 {
                     Data = new RequestPayDTO()
                     {
+                        Id = requestPayEntity.Id,
                         Amount = requestPayEntity.Amount,
-                    }
+                    },
+                    IsSuccess = true
                 };
             }
             else

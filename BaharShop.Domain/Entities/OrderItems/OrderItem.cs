@@ -1,20 +1,21 @@
 ﻿using BaharShop.Domain.Entities.Base;
-using System.ComponentModel;
+using BaharShop.Domain.Entities.Orders;
+using BaharShop.Domain.Entities.Products;
 
 namespace BaharShop.Domain.Entities.OrderItems
 {
     public class OrderItem : BaseEntity
     {
-        [Description("شناسه سفارش")]
+        public virtual Order Order { get; set; }
+
         public int OrderId { get; set; }
 
-        [Description("عنوان")]
-        public string Title { get; set; }
+        public virtual Product Product { get; set; }
 
-        [Description("تعداد")]
-        public int Count { get; set; }
+        public int ProductId { get; set; }
 
-        [Description("قیمت")]
         public decimal Price { get; set; }
+
+        public int Count { get; set; }
     }
 }

@@ -1,6 +1,8 @@
-﻿using BaharShop.Application.Features.Finances.Commands.Requests;
+﻿using BaharShop.Application.DTOs.Orders;
+using BaharShop.Application.Features.Finances.Commands.Requests;
 using BaharShop.Application.Features.Finances.Queries.Requests;
 using BaharShop.Application.Services.Carts;
+using BaharShop.Application.Services.Orders;
 //using BaharShop.Domain.Entities.Finances;
 using BaharShop.WebMVC.Utilities;
 using Dto.Payment;
@@ -20,8 +22,9 @@ namespace BaharShop.WebMVC.Controllers
         private readonly Payment _payment;
         //private readonly Authority _authority;
         //private readonly Transactions _transactions;
+        private readonly IOrderServices _orderServices;
 
-        public PayController(IMediator mediator, ICartServices cartServices)
+        public PayController(IMediator mediator, ICartServices cartServices, IOrderServices orderServices)
         {
             _mediator = mediator;
             _cartServices = cartServices;
@@ -31,6 +34,7 @@ namespace BaharShop.WebMVC.Controllers
             _payment = expose.CreatePayment();
             //_authority = expose.CreateAuthority();
             //_transactions = expose.CreateTransactions();
+            _orderServices = orderServices;
         }
 
         public async Task<IActionResult> Index()
@@ -85,9 +89,20 @@ namespace BaharShop.WebMVC.Controllers
                                                     }
                                                     , Payment.Mode.sandbox);
 
+            int? userId = ClaimUtility.GetUserId(User);
+            var cart = await _cartServices.GetMyCart(_cookiesManeger.GetBrowserId(HttpContext), userId);
+
             if (verification.Status == 100)
             {
-
+                var orderResult = await _orderServices.CreateOrder(
+                                                            new RequestCreateOrderDTO
+                                                            {
+                                                                CartId = cart.Data.CartId,
+                                                                UserId = userId.Value,
+                                                                RequestPayId = requestPay.Data.Id
+                                                            });
+                
+                return RedirectToAction("Index", "Order");
             }
             else
             {

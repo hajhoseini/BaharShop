@@ -27,6 +27,16 @@ namespace BaharShop.InfraStructure.DBContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Order>()
+                .HasOne(p => p.User)
+                .WithMany(p => p.Orders)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(p => p.RequestPay)
+                .WithMany(p => p.Orders)
+                .OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<Role>().HasData(new Role { Id = 1, Name = nameof(UserRoles.Admin) });
             modelBuilder.Entity<Role>().HasData(new Role { Id = 2, Name = nameof(UserRoles.Operator) });
             modelBuilder.Entity<Role>().HasData(new Role { Id = 3, Name = nameof(UserRoles.Customer) });
@@ -45,6 +55,8 @@ namespace BaharShop.InfraStructure.DBContext
             modelBuilder.Entity<Cart>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<CartItem>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<RequestPay>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<Order>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<OrderItem>().HasQueryFilter(p => !p.IsRemoved);
         }
 
         public DbSet<Address> Address { get; set; }

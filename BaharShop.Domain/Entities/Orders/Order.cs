@@ -1,36 +1,22 @@
 ﻿using BaharShop.Common.Enums;
 using BaharShop.Domain.Entities.Base;
-using System.ComponentModel;
+using BaharShop.Domain.Entities.Finances;
+using BaharShop.Domain.Entities.Users;
 
 namespace BaharShop.Domain.Entities.Orders
 {
     public class Order : BaseEntity
     {
-        [Description("کدسفارش")]
-        public int Code { get; set; }
+        public virtual User User { get; set; }
 
-        [Description("مشتری")]
-        public int CustomerId { get; set; }
+        public int UserId { get; set; }
 
-        [Description("آدرس")]
-        public int AddressId { get; set; }
+        public virtual RequestPay RequestPay { get; set; }
 
-        [Description("تاریخ سفارش")]
-        public DateTime OrderDate { get; set; }
+        public int RequestPayId { get; set; }
 
-        [Description("تاریخ تحویل")]
-        public DateTime DeliveryDate { get; set; }
+        public OrderState OrderState { get; set; }
 
-        [Description("مبلغ کل")]
-        public decimal OrderPrice { get; set; }
-
-        [Description("هزینه ارسال")]
-        public decimal SendPrice { get; set; }
-
-        [Description("هزینه قابل پرداخت")]
-        public decimal TotalPrice { get; set; }
-
-        [Description("نحوه پرداخت")]
-        public PaymentTypeEnum PaymentType { get; set; }
+        public string Address { get; set; }
     }
 }

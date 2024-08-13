@@ -1,4 +1,5 @@
-﻿using BaharShop.Application.DTOs.Orders;
+﻿using BaharShop.Application.DTOs.OrderItems;
+using BaharShop.Application.DTOs.Orders;
 using BaharShop.Common;
 using BaharShop.Common.Enums;
 using BaharShop.Domain.Entities.Carts;
@@ -7,6 +8,7 @@ using BaharShop.Domain.Entities.OrderItems;
 using BaharShop.Domain.Entities.Orders;
 using BaharShop.Domain.Entities.Users;
 using BaharShop.Domain.IReaders;
+using BaharShop.Domain.IReaders.Orders;
 using BaharShop.Domain.IRepositories;
 
 namespace BaharShop.Application.Services.Orders
@@ -20,17 +22,21 @@ namespace BaharShop.Application.Services.Orders
         private readonly IGenericRepository<Order> _orderRepository;
         private readonly IGenericRepository<OrderItem> _orderItemRepository;
 
+        private readonly IOrderReader _orderReader;
+
         public OrderServices(IGenericReader<User> userReader
                                 , IGenericReader<RequestPay> requestPayReader
                                 , IGenericReader<Cart> cartReader
                                 , IGenericRepository<Order> orderRepository
-                                , IGenericRepository<OrderItem> orderItemRepository)
+                                , IGenericRepository<OrderItem> orderItemRepository
+                                , IOrderReader orderReader)
         {
             _userReader = userReader;
             _requestPayReader = requestPayReader;
             _cartReader = cartReader;
             _orderRepository = orderRepository;
             _orderItemRepository = orderItemRepository;
+            _orderReader = orderReader;
         }
 
         public async Task<ResultDTO> CreateOrder(RequestCreateOrderDTO request)
@@ -75,6 +81,30 @@ namespace BaharShop.Application.Services.Orders
             {
                 IsSuccess = true,
                 Message = "",
+            };
+        }
+
+        public ResultDTO<List<GetUserOrderDTO>> GetUserOrders(int userId)
+        {
+            var orders = _orderReader.GetUserOrders(userId).Select(p => new GetUserOrderDTO
+                                                            {
+                                                                OrderId = p.Id,
+                                                                OrderState = p.OrderState,
+                                                                RequestPayId = p.RequestPayId,
+                                                                OrderItems = p.OrderItems.Select(o => new OrderItemDTO
+                                                                {
+                                                                    Count = o.Count,
+                                                                    OrderItemId = o.Id,
+                                                                    Price = o.Price,
+                                                                    ProductId = o.ProductId,
+                                                                    ProductName = o.Product.Title,
+                                                                }).ToList(),
+                                                            }).ToList();
+
+            return new ResultDTO<List<GetUserOrderDTO>>()
+            {
+                Data = orders,
+                IsSuccess = true,
             };
         }
     }

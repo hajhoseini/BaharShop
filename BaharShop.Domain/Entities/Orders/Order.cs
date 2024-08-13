@@ -1,6 +1,7 @@
 ﻿using BaharShop.Common.Enums;
 using BaharShop.Domain.Entities.Base;
 using BaharShop.Domain.Entities.Finances;
+using BaharShop.Domain.Entities.OrderItems;
 using BaharShop.Domain.Entities.Users;
 
 namespace BaharShop.Domain.Entities.Orders
@@ -18,5 +19,7 @@ namespace BaharShop.Domain.Entities.Orders
         public OrderState OrderState { get; set; }
 
         public string Address { get; set; }
+
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

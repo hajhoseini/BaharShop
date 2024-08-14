@@ -1,4 +1,5 @@
 ﻿using BaharShop.Domain.Entities.Base;
+using BaharShop.Domain.Entities.Orders;
 using BaharShop.Domain.Entities.Users;
 
 namespace BaharShop.Domain.Entities.Finances
@@ -17,8 +18,10 @@ namespace BaharShop.Domain.Entities.Finances
 
         public DateTime? PayDate { get; set; }
 
-        public string Authority { get; set; }
+        public string Authority { get; set; } = "";
 
         public long RefId { get; set; } = 0;
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

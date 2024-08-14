@@ -1,4 +1,5 @@
 using BaharShop.Domain.Entities.Base;
+using BaharShop.Domain.Entities.Orders;
 using BaharShop.Domain.Entities.UserRoles;
 
 namespace BaharShop.Domain.Entities.Users
@@ -14,5 +15,7 @@ namespace BaharShop.Domain.Entities.Users
         public bool IsActive { get; set; }
 
         public ICollection<UserRole> UserRoles { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

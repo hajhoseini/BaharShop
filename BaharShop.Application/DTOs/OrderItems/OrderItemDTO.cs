@@ -1,21 +1,15 @@
-﻿using System.ComponentModel;
-
-namespace BaharShop.Application.DTOs.OrderItems
+﻿namespace BaharShop.Application.DTOs.OrderItems
 {
     public class OrderItemDTO
     {
-        public int Id { get; set; }
+        public int OrderItemId { get; set; }
 
-        [Description("شناسه سفارش")]
-        public int OrderId { get; set; }
+        public int ProductId { get; set; }
 
-        [Description("عنوان")]
-        public string Title { get; set; }
+        public string ProductName { get; set; }
 
-        [Description("تعداد")]
-        public int Count { get; set; }
-
-        [Description("قیمت")]
         public decimal Price { get; set; }
+
+        public int Count { get; set; }
     }
 }

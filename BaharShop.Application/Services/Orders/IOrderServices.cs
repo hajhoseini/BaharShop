@@ -1,5 +1,6 @@
 ﻿using BaharShop.Application.DTOs.Orders;
 using BaharShop.Common;
+using BaharShop.Common.Enums;
 
 namespace BaharShop.Application.Services.Orders
 {
@@ -8,5 +9,7 @@ namespace BaharShop.Application.Services.Orders
         Task<ResultDTO> CreateOrder(RequestCreateOrderDTO request);
 
         ResultDTO<List<GetUserOrderDTO>> GetUserOrders(int userId);
+
+        ResultDTO<List<OrderDTO>> GetListOrdersForAdmin(OrderState orderState);
     }
 }

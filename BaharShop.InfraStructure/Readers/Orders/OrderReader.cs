@@ -1,4 +1,6 @@
-﻿using BaharShop.Domain.Entities.Orders;
+﻿using BaharShop.Common;
+using BaharShop.Common.Enums;
+using BaharShop.Domain.Entities.Orders;
 using BaharShop.Domain.IReaders.Orders;
 using BaharShop.InfraStructure.DBContext;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +23,17 @@ namespace BaharShop.InfraStructure.Readers.Orders
                                 .ThenInclude(p => p.Product)
                                 .Where(p => p.UserId == userId)
                                 .OrderByDescending(p => p.Id).ToList();
+
+            return orders;
+        }
+
+        public List<Order> GetListOrdersForAdmin(OrderState orderState)
+        {
+            var orders = _dbContext.Order
+                                 .Include(p => p.OrderItems)
+                                 .Where(p => p.OrderState == orderState)
+                                 .OrderByDescending(p => p.Id)
+                                 .ToList();                                 
 
             return orders;
         }

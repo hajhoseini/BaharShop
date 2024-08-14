@@ -107,5 +107,26 @@ namespace BaharShop.Application.Services.Orders
                 IsSuccess = true,
             };
         }
+
+        public ResultDTO<List<OrderDTO>> GetListOrdersForAdmin(OrderState orderState)
+        {
+            var orders = _orderReader.GetListOrdersForAdmin(orderState);
+            
+            var ordersDTO = orders.Select(p => new OrderDTO
+            {
+                InsertDate = p.InsertDate,
+                OrderId = p.Id,
+                OrderState = p.OrderState,
+                ProductCount = p.OrderItems.Count(),
+                RequestId = p.RequestPayId,
+                UserId = p.UserId,
+            }).ToList();
+
+            return new ResultDTO<List<OrderDTO>>()
+            {
+                Data = ordersDTO,
+                IsSuccess = true,
+            };
+        }
     }
 }

@@ -92,6 +92,8 @@ namespace BaharShop.WebMVC.Controllers
             int? userId = ClaimUtility.GetUserId(User);
             var cart = await _cartServices.GetMyCart(_cookiesManeger.GetBrowserId(HttpContext), userId);
 
+            //ZarinPalByRest();
+
             if (verification.Status == 100)
             {
                 var orderResult = await _orderServices.CreateOrder(
@@ -110,6 +112,17 @@ namespace BaharShop.WebMVC.Controllers
             }
 
             return View();
+        }
+
+        private void ZarinPalByRest()
+        {
+            //var client = new RestClient("https://www.zarinpal.com/pg/rest/WebGate/PaymentVerification.json");
+            //client.Timeout = -1;
+            //var request = new RestRequest(Method.POST);
+            //request.AddHeader("Content-Type", "application/json");
+            //request.AddParameter("application/json", $"{{\"MerchantID\" :\"{merchendId}\",\"Authority\":\"{Authority}\",\"Amount\":\"{10000}\"}}", ParameterType.RequestBody);
+            //IRestResponse response = client.Execute(request);
+            //VerificationPayResultDto verification = JsonConvert.DeserializeObject<VerificationPayResultDto>(response.Content);
         }
     }
 }

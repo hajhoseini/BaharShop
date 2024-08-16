@@ -101,7 +101,9 @@ namespace BaharShop.WebMVC.Controllers
                                                             {
                                                                 CartId = cart.Data.CartId,
                                                                 UserId = userId.Value,
-                                                                RequestPayId = requestPay.Data.Id
+                                                                RequestPayId = requestPay.Data.Id,
+                                                                Authority = authority,
+                                                                RefId = 0//?
                                                             });
                 
                 return RedirectToAction("Index", "Order");

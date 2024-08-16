@@ -50,6 +50,8 @@ namespace BaharShop.Application.Services.Orders
 
             requestPay.IsPay = true;
             requestPay.PayDate = DateTime.Now;
+            requestPay.RefId = request.RefId;
+            requestPay.Authority = request.Authority;
 
             cart.Finished = true;
 

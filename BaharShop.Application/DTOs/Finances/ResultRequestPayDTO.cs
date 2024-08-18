@@ -10,6 +10,6 @@
 
         public string MobileNumber { get; set; }
 
-        public int RequestPayId { get; set; }
+        public int PayId { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace BaharShop.Application.Features.Finances.Queries.Requests
 {
-    public class GetRequestPayQuery : IRequest<ResultDTO<RequestPayDTO>>
+    public class GetPayQuery : IRequest<ResultDTO<PayDTO>>
     {
         public Guid Guid { get; set; }
     }

@@ -4,9 +4,9 @@ using BaharShop.InfraStructure.DBContext;
 
 namespace BaharShop.InfraStructure.Repositories.Finances
 {
-    public class RequestPayRepository : GenericRepository<RequestPay>, IRequestPayRepository
+    public class PayRepository : GenericRepository<Pay>, IPayRepository
     {
-        public RequestPayRepository(BaharShopDBContext dbContext) : base(dbContext)
+        public PayRepository(BaharShopDBContext dbContext) : base(dbContext)
         {
         }
     }

@@ -33,7 +33,7 @@ namespace BaharShop.InfraStructure.DBContext
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Order>()
-                .HasOne(p => p.RequestPay)
+                .HasOne(p => p.Pay)
                 .WithMany(p => p.Orders)
                 .OnDelete(DeleteBehavior.NoAction);
 
@@ -54,7 +54,7 @@ namespace BaharShop.InfraStructure.DBContext
             modelBuilder.Entity<HomePageImage>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<Cart>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<CartItem>().HasQueryFilter(p => !p.IsRemoved);
-            modelBuilder.Entity<RequestPay>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<Pay>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<Order>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<OrderItem>().HasQueryFilter(p => !p.IsRemoved);
         }
@@ -82,6 +82,6 @@ namespace BaharShop.InfraStructure.DBContext
 
         public DbSet<CartItem> CartItem { get; set; }
 
-        public DbSet<RequestPay> RequestPay { get; set; }
+        public DbSet<Pay> Pay { get; set; }
     }
 }

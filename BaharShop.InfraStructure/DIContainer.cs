@@ -91,7 +91,7 @@ namespace BaharShop.InfraStructure
             service.AddScoped<IHomePageImageRepository, HomePageImageRepository>();
             service.AddScoped<ICartRepository, CartRepository>();
             service.AddScoped<ICartItemRepository, CartItemRepository>();
-            service.AddScoped<IRequestPayRepository, RequestPayRepository>();
+            service.AddScoped<IPayRepository, PayRepository>();
 
             service.AddScoped(typeof(IGenericReader<>), typeof(GenericReader<>));
 
@@ -110,7 +110,7 @@ namespace BaharShop.InfraStructure
             service.AddScoped<IHomePageImageReader, HomePageImageReader>();
             service.AddScoped<ICartReader, CartReader>();
             service.AddScoped<ICartItemReader, CartItemReader>();
-            service.AddScoped<IRequestPayReader, RequestPayReader>();
+            service.AddScoped<IPayReader, PayReader>();
 
             return service;
         }

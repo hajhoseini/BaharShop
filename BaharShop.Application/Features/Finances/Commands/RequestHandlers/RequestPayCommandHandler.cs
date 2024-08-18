@@ -9,22 +9,21 @@ using MediatR;
 
 namespace BaharShop.Application.Features.Finances.Commands.RequestHandlers
 {
-    public class CreateRequestPayCommandHandler : IRequestHandler<CreateRequestPayCommand, ResultDTO<ResultRequestPayDTO>>
+    public class RequestPayCommandHandler : IRequestHandler<RequestPayCommand, ResultDTO<ResultRequestPayDTO>>
     {
-        private readonly IGenericRepository<RequestPay> _requestPayRepository;
+        private readonly IGenericRepository<Pay> _payRepository;
         private readonly IGenericReader<User> _userReader;
-        //private readonly IMapper _mapper;
 
-        public CreateRequestPayCommandHandler(IGenericRepository<RequestPay> requestPayRepository, IGenericReader<User> userReader)
+        public RequestPayCommandHandler(IGenericRepository<Pay> payRepository, IGenericReader<User> userReader)
         {
-            _requestPayRepository = requestPayRepository;
+            _payRepository = payRepository;
             _userReader = userReader;
         }
 
-        public async Task<ResultDTO<ResultRequestPayDTO>> Handle(CreateRequestPayCommand request, CancellationToken cancellationToken)
+        public async Task<ResultDTO<ResultRequestPayDTO>> Handle(RequestPayCommand request, CancellationToken cancellationToken)
         {
             var user = await _userReader.GetById(request.UserId);
-            RequestPay requestPay = new RequestPay()
+            Pay pay = new Pay()
             {
                 Amount = request.Amount,
                 Guid = Guid.NewGuid(),
@@ -32,17 +31,17 @@ namespace BaharShop.Application.Features.Finances.Commands.RequestHandlers
                 User = user
             };
 
-            var result = await _requestPayRepository.Create(requestPay);
+            var result = await _payRepository.Create(pay);
 
             return new ResultDTO<ResultRequestPayDTO>()
             {
                 Data = new ResultRequestPayDTO
                 {
-                    Guid = requestPay.Guid,
-                    Amount = requestPay.Amount,
+                    Guid = pay.Guid,
+                    Amount = pay.Amount,
                     Email = user.Email,
                     //MobileNumber ??
-                    RequestPayId = requestPay.Id
+                    PayId = pay.Id
                 },
                 IsSuccess = true
             };

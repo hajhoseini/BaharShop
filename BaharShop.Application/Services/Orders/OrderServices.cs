@@ -16,7 +16,7 @@ namespace BaharShop.Application.Services.Orders
     public class OrderServices : IOrderServices
     {
         private readonly IGenericReader<User> _userReader;
-        private readonly IGenericReader<RequestPay> _requestPayReader;
+        private readonly IGenericReader<Pay> _payReader;
         private readonly IGenericReader<Cart> _cartReader;
 
         private readonly IGenericRepository<Order> _orderRepository;
@@ -25,31 +25,33 @@ namespace BaharShop.Application.Services.Orders
         private readonly IOrderReader _orderReader;
 
         public OrderServices(IGenericReader<User> userReader
-                                , IGenericReader<RequestPay> requestPayReader
+                                , IGenericReader<Pay> payReader
                                 , IGenericReader<Cart> cartReader
                                 , IGenericRepository<Order> orderRepository
                                 , IGenericRepository<OrderItem> orderItemRepository
                                 , IOrderReader orderReader)
         {
             _userReader = userReader;
-            _requestPayReader = requestPayReader;
+            _payReader = payReader;
             _cartReader = cartReader;
             _orderRepository = orderRepository;
             _orderItemRepository = orderItemRepository;
             _orderReader = orderReader;
         }
 
-        public async Task<ResultDTO> CreateOrder(RequestCreateOrderDTO request)
+        public async Task<ResultDTO> CreateOrder(CreateOrderDTO request)
         {
             var user = await _userReader.GetById(request.UserId);
-            var requestPay = await _requestPayReader.GetById(request.RequestPayId);
+            var pay = await _payReader.GetById(request.PayId);
             //var cart = _context.Carts.Include(p => p.CartItems)
             //    .ThenInclude(p => p.Product)
             //    .Where(p => p.Id == request.CartId).FirstOrDefault();
             var cart = await _cartReader.GetById(request.CartId);
 
-            requestPay.IsPay = true;
-            requestPay.PayDate = DateTime.Now;
+            pay.IsPay = true;
+            pay.PayDate = DateTime.Now;
+            pay.RefId = request.RefId;
+            pay.Authority = request.Authority;
 
             cart.Finished = true;
 
@@ -57,7 +59,7 @@ namespace BaharShop.Application.Services.Orders
             {
                 Address = "",
                 OrderState = OrderState.Processing,
-                RequestPay = requestPay,
+                Pay = pay,
                 User = user,
             };
             var orderResult = await _orderRepository.Create(order);
@@ -90,7 +92,7 @@ namespace BaharShop.Application.Services.Orders
                                                             {
                                                                 OrderId = p.Id,
                                                                 OrderState = p.OrderState,
-                                                                RequestPayId = p.RequestPayId,
+                                                                PayId = p.PayId,
                                                                 OrderItems = p.OrderItems.Select(o => new OrderItemDTO
                                                                 {
                                                                     Count = o.Count,
@@ -118,7 +120,7 @@ namespace BaharShop.Application.Services.Orders
                 OrderId = p.Id,
                 OrderState = p.OrderState,
                 ProductCount = p.OrderItems.Count(),
-                RequestId = p.RequestPayId,
+                RequestId = p.PayId,
                 UserId = p.UserId,
             }).ToList();
 

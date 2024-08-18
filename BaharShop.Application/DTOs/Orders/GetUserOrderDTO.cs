@@ -9,7 +9,7 @@ namespace BaharShop.Application.DTOs.Orders
 
         public OrderState OrderState { get; set; }
 
-        public int RequestPayId { get; set; }
+        public int PayId { get; set; }
 
         public List<OrderItemDTO> OrderItems { get; set; }
     }

@@ -6,20 +6,20 @@ using MediatR;
 
 namespace BaharShop.Application.Features.Finances.Queries.RequestHandlers
 {
-    public class GetListRequestPayForAdminQueryHandler : IRequestHandler<GetListRequestPayForAdminQuery, ResultDTO<List<RequestPayDTO>>>
+    public class GetListPaysForAdminQueryHandler : IRequestHandler<GetListPaysForAdminQuery, ResultDTO<List<PayDTO>>>
     {
-        private readonly IRequestPayReader _requestPayReader;
+        private readonly IPayReader _payReader;
 
-        public GetListRequestPayForAdminQueryHandler(IRequestPayReader requestPayReader)
+        public GetListPaysForAdminQueryHandler(IPayReader payReader)
         {
-            _requestPayReader = requestPayReader;
+            _payReader = payReader;
         }
 
-        public async Task<ResultDTO<List<RequestPayDTO>>> Handle(GetListRequestPayForAdminQuery request, CancellationToken cancellationToken)
+        public async Task<ResultDTO<List<PayDTO>>> Handle(GetListPaysForAdminQuery request, CancellationToken cancellationToken)
         {
-            var pays = await _requestPayReader.GetListForAdmin();
+            var pays = await _payReader.GetListForAdmin();
 
-            var result = pays.Select(p => new RequestPayDTO
+            var result = pays.Select(p => new PayDTO
             {
                 Id = p.Id,
                 Amount = p.Amount,
@@ -32,7 +32,7 @@ namespace BaharShop.Application.Features.Finances.Queries.RequestHandlers
                 UserName = p.User.FullName
             }).ToList();
 
-            return new ResultDTO<List<RequestPayDTO>>()
+            return new ResultDTO<List<PayDTO>>()
             {
                 Data = result,
                 IsSuccess = true,

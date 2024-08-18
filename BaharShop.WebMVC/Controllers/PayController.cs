@@ -44,7 +44,7 @@ namespace BaharShop.WebMVC.Controllers
 
             if(myCart.Data.SumAmount > 0)
             {
-                CreateRequestPayCommand command = new CreateRequestPayCommand
+                RequestPayCommand command = new RequestPayCommand
                 {
                     UserId = userId.Value,
                     Amount = myCart.Data.SumAmount
@@ -58,7 +58,7 @@ namespace BaharShop.WebMVC.Controllers
                                                 {
                                                     Mobile = requestPay.Data.MobileNumber,
                                                     CallbackUrl = $"https://localhost:44376/Pay/Verify?guid={requestPay.Data.Guid}",
-                                                    Description = "پرداخت فاکتور شماره:" + requestPay.Data.RequestPayId,
+                                                    Description = "پرداخت فاکتور شماره:" + requestPay.Data.PayId,
                                                     Email = requestPay.Data.Email,
                                                     Amount = Decimal.ToInt32(requestPay.Data.Amount),
                                                     MerchantId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
@@ -77,7 +77,7 @@ namespace BaharShop.WebMVC.Controllers
 
         public async Task<IActionResult> Verify(Guid guid, string authority, string status)
         {
-            GetRequestPayQuery query = new GetRequestPayQuery { Guid = guid };
+            GetPayQuery query = new GetPayQuery { Guid = guid };
             var requestPay = await _mediator.Send(query);
 
             var verification = await _payment.Verification(
@@ -97,11 +97,11 @@ namespace BaharShop.WebMVC.Controllers
             if (verification.Status == 100)
             {
                 var orderResult = await _orderServices.CreateOrder(
-                                                            new RequestCreateOrderDTO
+                                                            new CreateOrderDTO
                                                             {
                                                                 CartId = cart.Data.CartId,
                                                                 UserId = userId.Value,
-                                                                RequestPayId = requestPay.Data.Id,
+                                                                PayId = requestPay.Data.Id,
                                                                 Authority = authority,
                                                                 RefId = 0//?
                                                             });

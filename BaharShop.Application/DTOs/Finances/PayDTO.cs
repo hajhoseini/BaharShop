@@ -1,6 +1,6 @@
 ﻿namespace BaharShop.Application.DTOs.Finances
 {
-    public class RequestPayDTO
+    public class PayDTO
     {
         public int Id { get; set; }
 

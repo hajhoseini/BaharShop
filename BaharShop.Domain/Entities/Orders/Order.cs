@@ -12,9 +12,9 @@ namespace BaharShop.Domain.Entities.Orders
 
         public int UserId { get; set; }
 
-        public virtual RequestPay RequestPay { get; set; }
+        public virtual Pay Pay { get; set; }
 
-        public int RequestPayId { get; set; }
+        public int PayId { get; set; }
 
         public OrderState OrderState { get; set; }
 

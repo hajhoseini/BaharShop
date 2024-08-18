@@ -4,7 +4,7 @@ using BaharShop.Domain.Entities.Users;
 
 namespace BaharShop.Domain.Entities.Finances
 {
-    public class RequestPay : BaseEntity
+    public class Pay : BaseEntity
     {
         public Guid Guid { get; set; }
 

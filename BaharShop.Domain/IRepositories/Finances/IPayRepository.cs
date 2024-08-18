@@ -2,7 +2,7 @@
 
 namespace BaharShop.Domain.IRepositories.Finances
 {
-    public interface IRequestPayRepository : IGenericRepository<RequestPay>
+    public interface IPayRepository : IGenericRepository<Pay>
     {
 
     }

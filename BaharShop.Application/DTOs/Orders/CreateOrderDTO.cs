@@ -1,10 +1,10 @@
 ﻿namespace BaharShop.Application.DTOs.Orders
 {
-    public class RequestCreateOrderDTO
+    public class CreateOrderDTO
     {
         public int CartId { get; set; }
 
-        public int RequestPayId { get; set; }
+        public int PayId { get; set; }
 
         public int UserId { get; set; }
 

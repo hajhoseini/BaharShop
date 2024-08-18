@@ -6,7 +6,7 @@ namespace BaharShop.Application.Services.Orders
 {
     public interface IOrderServices
     {
-        Task<ResultDTO> CreateOrder(RequestCreateOrderDTO request);
+        Task<ResultDTO> CreateOrder(CreateOrderDTO request);
 
         ResultDTO<List<GetUserOrderDTO>> GetUserOrders(int userId);
 

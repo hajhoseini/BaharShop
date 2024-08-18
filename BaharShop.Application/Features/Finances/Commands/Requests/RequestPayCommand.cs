@@ -4,7 +4,7 @@ using MediatR;
 
 namespace BaharShop.Application.Features.Finances.Commands.Requests
 {
-    public class CreateRequestPayCommand : IRequest<ResultDTO<ResultRequestPayDTO>>
+    public class RequestPayCommand : IRequest<ResultDTO<ResultRequestPayDTO>>
     {
         public int UserId { get; set; }
 

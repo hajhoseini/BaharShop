@@ -2,11 +2,13 @@
 using BaharShop.Application.Features.HomePage.Commands.Requests;
 using BaharShop.Common.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaharShop.WebMVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class HomePageImageController : Controller
     {
         private readonly IMediator _mediator;

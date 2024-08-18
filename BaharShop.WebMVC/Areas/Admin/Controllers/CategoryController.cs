@@ -3,11 +3,13 @@ using BaharShop.Application.Features.Categories.Commands.Requests;
 using BaharShop.Application.Features.Categories.Queries.Requests;
 using BaharShop.WebMVC.Areas.Admin.Models.CategoryViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaharShop.WebMVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private readonly IMediator _mediator;

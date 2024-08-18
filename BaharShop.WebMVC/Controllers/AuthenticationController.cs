@@ -112,7 +112,7 @@ namespace BaharShop.WebMVC.Controllers
                 var principal = new ClaimsPrincipal(identity);
                 var properties = new AuthenticationProperties()
                 {
-                    IsPersistent = true,
+                    IsPersistent = true,//for remember me 
                     ExpiresUtc = DateTime.Now.AddDays(5),
                 };
                 HttpContext.SignInAsync(principal, properties);

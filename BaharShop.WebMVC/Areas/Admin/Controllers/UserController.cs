@@ -4,12 +4,14 @@ using BaharShop.Application.Features.Roles.Queries.Requests;
 using BaharShop.Application.Features.Users.Commands.Requests;
 using BaharShop.Application.Features.Users.Queries.Requests;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BaharShop.WebMVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly IMediator _mediator;

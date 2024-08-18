@@ -1,4 +1,4 @@
-
+@using BaharShop.WebMVC.Utilities;
 @{
     Layout = null;
 }
@@ -52,62 +52,65 @@
                             <a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">داشبورد</span><span class="tag badge badge-pill badge-danger mt-1">2</span></a>
                         </li>
 
-                        <li class="has-sub nav-item">
-                            <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت صفحه اصلی سایت</span></a>
-                            <ul class="menu-content">
-                                <li>
-                                    <a href="~/admin/HomePageImage/Create" class="menu-item">ثبت تصویر جدید </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @if (ClaimUtility.GetRoles(User).Where(p => p == "Admin").Count() >= 1)
+                        {
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت صفحه اصلی سایت</span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/HomePageImage/Create" class="menu-item">ثبت تصویر جدید </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        <li class="has-sub nav-item">
-                            <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت کاربران</span></a>
-                            <ul class="menu-content">
-                                <li>
-                                    <a href="~/admin/user/index" class="menu-item">لیست کاربران</a>
-                                </li>
-                                <li>
-                                    <a href="~/admin/user/Create" class="menu-item">ثبت کاربر جدید </a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت کاربران</span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/user/index" class="menu-item">لیست کاربران</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/admin/user/Create" class="menu-item">ثبت کاربر جدید </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        <li class="has-sub nav-item">
-                            <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت مشتریان</span></a>
-                            <ul class="menu-content">
-                                <li>
-                                    <a href="~/admin/customer/index" class="menu-item">لیست مشتریان</a>
-                                </li>
-                                <li>
-                                    <a href="~/admin/customer/Create" class="menu-item">ثبت مشتری جدید </a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت مشتریان</span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/customer/index" class="menu-item">لیست مشتریان</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/admin/customer/Create" class="menu-item">ثبت مشتری جدید </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        <li class="has-sub nav-item">
-                            <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت فروشندگان</span></a>
-                            <ul class="menu-content">
-                                <li>
-                                    <a href="~/admin/seller/index" class="menu-item">لیست فروشندگان</a>
-                                </li>
-                                <li>
-                                    <a href="~/admin/seller/Create" class="menu-item">ثبت فروشنده جدید </a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت فروشندگان</span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/seller/index" class="menu-item">لیست فروشندگان</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/admin/seller/Create" class="menu-item">ثبت فروشنده جدید </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        <li class="has-sub nav-item">
-                            <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت دسته بندی ها</span></a>
-                            <ul class="menu-content">
-                                <li>
-                                    <a href="~/admin/category/index" class="menu-item">لیست دسته بندی ها</a>
-                                </li>
-                                <li>
-                                    <a href="~/admin/category/Create" class="menu-item">ثبت دسته بندی جدید </a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت دسته بندی ها</span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/category/index" class="menu-item">لیست دسته بندی ها</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/admin/category/Create" class="menu-item">ثبت دسته بندی جدید </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
 
                         <li class="has-sub nav-item">
                             <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت محصولات</span></a>
@@ -120,7 +123,7 @@
                                 </li>
                             </ul>
                         </li>
-                        
+
                         <li class="has-sub nav-item">
                             <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت سفارش ها</span></a>
                             <ul class="menu-content">
@@ -222,7 +225,7 @@
 
         <div class="main-panel">
             <div class="main-content">
-               @RenderBody()
+                @RenderBody()
             </div>
 
             <footer class="footer footer-static footer-light">
@@ -462,7 +465,7 @@
     </div>
     <!-- BEGIN VENDOR JS-->
 
-    
+
     <script src="~/AdminTemplate/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
     <script src="~/AdminTemplate/app-assets/js/persian-datepicker.min.js"></script>
     <script src="~/AdminTemplate/app-assets/vendors/js/core/popper.min.js"></script>
@@ -482,9 +485,8 @@
     <!-- END CONVEX JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <!-- END PAGE LEVEL JS-->
+    @RenderSection("Scripts",false)
 
-    @RenderSection("Scripts",false)   
-    
     @RenderSection("Modals",false)
 </body>
 

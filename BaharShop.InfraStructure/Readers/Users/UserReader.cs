@@ -2,6 +2,7 @@
 using BaharShop.Domain.IReaders.Users;
 using BaharShop.InfraStructure.DBContext;
 using BaharShop.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace BaharShop.InfraStructure.Readers.Users
 {
@@ -21,6 +22,12 @@ namespace BaharShop.InfraStructure.Readers.Users
                 .ToList();
 
             return Users;
+        }
+
+        public async Task<User> GetByUserName(string userName)
+        {
+            User user = _dbContext.User.Include(p => p.UserRoles).ThenInclude(p => p.Role).FirstOrDefault(x => x.Email == userName);
+            return user;
         }
     }
 }

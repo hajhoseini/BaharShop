@@ -14,7 +14,7 @@ namespace BaharShop.Domain.Entities.Users
 
         public bool IsActive { get; set; }
 
-        public ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
     }

@@ -31,18 +31,7 @@ namespace BaharShop.Application.Features.Users.Queries.RequestHandlers
                 };
             }
 
-            var result = await _userReader.GetList();
-            if (result == null)
-            {
-                return new ResultDTO<UserDTO>()
-                {
-                    Data = null,
-                    IsSuccess = false,
-                    Message = "کاربری با این ایمیل در سایت فروشگاه بهار ثبت نام نکرده است"
-                };
-            }
-
-            User user = result.ToList().FirstOrDefault(x => x.Email == request.UserName);
+            User user = await _userReader.GetByUserName(request.UserName);
             if (user == null)
             {
                 return new ResultDTO<UserDTO>()
